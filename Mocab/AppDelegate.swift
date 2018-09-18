@@ -1,32 +1,35 @@
-//
-//  AppDelegate.swift
-//  Mocab
-//
-//  Created by Oliver Scott on 9/16/18.
-//  Copyright © 2018 Oliver Scott. All rights reserved.
-//
-
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    static private let CURRENT_WORD_KEY = "wordInProgress"
+    private var center: UNUserNotificationCenter {
+        return UNUserNotificationCenter.current()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        center.requestAuthorization(options: [.alert]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+        
+        if let encoded = try? SerializationMapper.encoder.encode([
+                Term(term: "word1", definition: "def1"),
+                Term(term: "word2", definition: "def2")]
+            ) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: LearningTermsController.LEARNING_TERMS_KEY)
+        }
+        
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        print("background")
+        
+        configureWordNotifications()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -39,8 +42,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("terminated")
     }
+}
 
-
+extension AppDelegate {
+    // MARK: Private
+    private func configureWordNotifications() {
+        clearOldNotifications()
+        
+        createNewNotifications()
+    }
+    
+    private func clearOldNotifications() {
+        center.removePendingNotificationRequests(withIdentifiers: [AppDelegate.CURRENT_WORD_KEY])
+    }
+    
+    private func createNewNotifications() {
+        if let learningWordsJson = UserDefaults
+            .standard
+            .object(forKey: LearningTermsController.LEARNING_TERMS_KEY) as? Data,
+            let learningWords = try? SerializationMapper.decoder
+                .decode([Term].self, from: learningWordsJson),
+            let currentTerm = learningWords.first
+        {
+            let notification = UNMutableNotificationContent()
+            notification.title = currentTerm.term
+            notification.body = currentTerm.definition
+            
+            let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
+            let request = UNNotificationRequest(
+                identifier: AppDelegate.CURRENT_WORD_KEY,
+                content: notification,
+                trigger: notificationTrigger
+            )
+            
+            center.add(request) { error in
+                if let error = error {
+                    print("ERROR: \(String(describing: error))")
+                }
+            }
+        }
+    }
 }
 
