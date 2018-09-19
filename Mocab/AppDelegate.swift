@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UNUserNotificationCenter.current()
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         center.requestAuthorization(options: [.alert]) { (granted, error) in
             // Enable or disable features based on authorization.
         }
