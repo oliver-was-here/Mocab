@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Enable or disable features based on authorization.
         }
         
-        if let encoded = try? SerializationMapper.encoder.encode([
+        if let encoded = try? JSONMapper.encoderInstance.encode([
                 Term(term: "word1", definition: "def1"),
                 Term(term: "word2", definition: "def2")]
             ) {
@@ -62,7 +62,7 @@ extension AppDelegate {
         if let learningWordsJson = UserDefaults
             .standard
             .object(forKey: LearningTermsController.LEARNING_TERMS_KEY) as? Data,
-            let learningWords = try? SerializationMapper.decoder
+            let learningWords = try? JSONMapper.decoderInstance
                 .decode([Term].self, from: learningWordsJson),
             let currentTerm = learningWords.first
         {

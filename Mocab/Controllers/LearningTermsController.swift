@@ -10,7 +10,7 @@ class LearningTermsController: UIViewController {
         termsTable.dataSource = self
         
         setupDataSource()
-    }
+    }   
 }
 
 extension LearningTermsController: UITableViewDataSource {
@@ -20,8 +20,8 @@ extension LearningTermsController: UITableViewDataSource {
         if let learningTermsJson = UserDefaults
             .standard
             .object(forKey: LearningTermsController.LEARNING_TERMS_KEY) as? Data,
-            let learningTerms = try? SerializationMapper
-                .decoder
+            let learningTerms = try? JSONMapper
+                .decoderInstance
                 .decode([Term].self, from: learningTermsJson)
         {
             self.learningTerms.append(contentsOf: learningTerms)
