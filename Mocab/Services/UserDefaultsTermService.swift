@@ -26,12 +26,30 @@ class UserDefaultsTermService: TermService {
     }
     
     static func create(_ newTerm: Term) {
-        let terms = [newTerm] + getAll()
+        let terms = filterDuplicates(terms: [newTerm] + getAll())
+        save(terms: terms)
+    }
+    
+    static func delete(_ term: Term) {
+        let updatedTerms = getAll().filter { $0.id != term.id }
+        save(terms: updatedTerms)
+    }
+    
+    // MARK: Private
+    static private func save(terms: [Term]) {
         do {
             let encodedTerms = try JSONMapper.encoderInstance.encode(terms)
             defaults.set(encodedTerms, forKey: self.LEARNING_TERMS_KEY)
         } catch {
-            print("ERROR: data-corruption in create(Term): \(error)")
+            print("ERROR: data-corruption in save([Term]): \(error)")
+        }
+    }
+    
+    static private func filterDuplicates(terms: [Term]) -> [Term] {
+        var takenTerms: Set<String> = Set()
+        return terms.filter {
+            let (inserted, _) = takenTerms.insert($0.id)
+            return inserted
         }
     }
 }

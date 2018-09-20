@@ -1,6 +1,10 @@
 import Foundation
 
 struct Term: Codable {
-    let term: String
+    let asEntered: String
     let definition: String
+}
+
+extension Term {
+    var id: String { return asEntered.lowercased() }
 }

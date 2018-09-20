@@ -4,4 +4,5 @@ protocol TermService {
     static func getAll() -> [Term]
     static func getInProgressTerm() -> Term?
     static func create(_ newTerm: Term)
+    static func delete(_ term: Term)
 }

@@ -26,7 +26,7 @@ extension LearningTermsController: UITableViewDataSource {
         let cell = UITableViewCell()
         
         if indexPath.section == 0 { // todo make enum for learning words
-            cell.textLabel?.text = learningTerms[indexPath.row].term
+            cell.textLabel?.text = learningTerms[indexPath.row].asEntered
         }
         
         return cell

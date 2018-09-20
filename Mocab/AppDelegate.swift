@@ -38,7 +38,7 @@ extension AppDelegate {
     private func createNewNotifications() {
         if let inProgressTerm = termsService.getInProgressTerm() {
             let notification = UNMutableNotificationContent()
-            notification.title = inProgressTerm.term
+            notification.title = inProgressTerm.asEntered
             notification.body = inProgressTerm.definition
             
             let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
