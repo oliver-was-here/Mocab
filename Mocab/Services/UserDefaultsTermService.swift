@@ -1,7 +1,7 @@
 import Foundation
 
 class UserDefaultsTermService: TermService {
-    private static let LEARNING_TERMS_KEY = "learningWords"
+    private static let LEARNING_TERMS_KEY = "terms"
     private static let defaults = UserDefaults.standard
     
     static func getAll() -> [Term] {
