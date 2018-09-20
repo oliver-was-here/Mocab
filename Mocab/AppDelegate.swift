@@ -9,18 +9,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var center: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
     }
+    private let termsService = ServiceInjector.termsService
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         center.requestAuthorization(options: [.alert]) { (granted, error) in
             // Enable or disable features based on authorization.
-        }
-        
-        if let encoded = try? JSONMapper.encoderInstance.encode([
-                Term(term: "word1", definition: "def1"),
-                Term(term: "word2", definition: "def2")]
-            ) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: LearningTermsController.LEARNING_TERMS_KEY)
         }
         
         return true
@@ -59,16 +52,10 @@ extension AppDelegate {
     }
     
     private func createNewNotifications() {
-        if let learningWordsJson = UserDefaults
-            .standard
-            .object(forKey: LearningTermsController.LEARNING_TERMS_KEY) as? Data,
-            let learningWords = try? JSONMapper.decoderInstance
-                .decode([Term].self, from: learningWordsJson),
-            let currentTerm = learningWords.first
-        {
+        if let inProgressTerm = termsService.getInProgressTerm() {
             let notification = UNMutableNotificationContent()
-            notification.title = currentTerm.term
-            notification.body = currentTerm.definition
+            notification.title = inProgressTerm.term
+            notification.body = inProgressTerm.definition
             
             let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
             let request = UNNotificationRequest(

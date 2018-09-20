@@ -2,32 +2,18 @@ import UIKit
 
 class LearningTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
-    private var learningTerms: [Term] = []
+    private var learningTerms: [Term] {
+        return ServiceInjector.termsService.getAll()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         termsTable.dataSource = self
-        
-        setupDataSource()
     }   
 }
 
 extension LearningTermsController: UITableViewDataSource {
-    static let LEARNING_TERMS_KEY = "learningWords"
-    
-    func setupDataSource() {
-        if let learningTermsJson = UserDefaults
-            .standard
-            .object(forKey: LearningTermsController.LEARNING_TERMS_KEY) as? Data,
-            let learningTerms = try? JSONMapper
-                .decoderInstance
-                .decode([Term].self, from: learningTermsJson)
-        {
-            self.learningTerms.append(contentsOf: learningTerms)
-        }
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
