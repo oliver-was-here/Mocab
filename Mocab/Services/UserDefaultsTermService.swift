@@ -25,7 +25,7 @@ class UserDefaultsTermService: TermService {
         return getAll().first
     }
     
-    static func create(_ newTerm: Term) {
+    static func save(_ newTerm: Term) {
         let terms = filterDuplicates(terms: [newTerm] + getAll())
         save(terms: terms)
     }

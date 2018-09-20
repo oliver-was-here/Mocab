@@ -10,6 +10,7 @@
 		1334C6F92150BC38002B17E6 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C6F82150BC38002B17E6 /* Term.swift */; };
 		1334C6FD2150BEEE002B17E6 /* JSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */; };
 		1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */; };
+		135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */; };
 		13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1B214ED7B700F20718 /* AppDelegate.swift */; };
 		13644F1E214ED7B700F20718 /* LearningTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1D214ED7B700F20718 /* LearningTermsController.swift */; };
 		13644F21214ED7B700F20718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13644F1F214ED7B700F20718 /* Main.storyboard */; };
@@ -20,9 +21,12 @@
 		1385266821531D2F0024F099 /* TermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266721531D2F0024F099 /* TermService.swift */; };
 		1385266A2153210D0024F099 /* UserDefaultsTermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138526692153210D0024F099 /* UserDefaultsTermService.swift */; };
 		1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266B2153224E0024F099 /* ServiceInjector.swift */; };
+		1385266F215341660024F099 /* NewWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewWordCell.swift */; };
 		13C8DA092152027900B3FA5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA082152027900B3FA5D /* Alamofire.framework */; };
 		13C8DA0B2152028200B3FA5D /* PMKAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */; };
 		13C8DA0D2152028C00B3FA5D /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */; };
+		13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAD8521534F9C004534F5 /* UITextField.swift */; };
+		13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAD882153580D004534F5 /* UnexpectedPayloadError.swift */; };
 		13D8F6C52152084C003F573C /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13D8F6C72152084C003F573C /* PMKAlamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13D8F6C92152084C003F573C /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA082152027900B3FA5D /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -69,6 +73,7 @@
 		1334C6F82150BC38002B17E6 /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMapper.swift; sourceTree = "<group>"; };
 		1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OxfordDictionaryService.swift; sourceTree = "<group>"; };
+		135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTermCell.swift; sourceTree = "<group>"; };
 		13644F18214ED7B700F20718 /* Mocab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13644F1B214ED7B700F20718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13644F1D214ED7B700F20718 /* LearningTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningTermsController.swift; sourceTree = "<group>"; };
@@ -85,9 +90,12 @@
 		1385266721531D2F0024F099 /* TermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermService.swift; sourceTree = "<group>"; };
 		138526692153210D0024F099 /* UserDefaultsTermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTermService.swift; sourceTree = "<group>"; };
 		1385266B2153224E0024F099 /* ServiceInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjector.swift; sourceTree = "<group>"; };
+		1385266E215341660024F099 /* NewWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordCell.swift; sourceTree = "<group>"; };
 		13C8DA082152027900B3FA5D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKAlamofire.framework; path = Carthage/Build/iOS/PMKAlamofire.framework; sourceTree = "<group>"; };
 		13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		13CCAD8521534F9C004534F5 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		13CCAD882153580D004534F5 /* UnexpectedPayloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnexpectedPayloadError.swift; sourceTree = "<group>"; };
 		13D8F6CC21521771003F573C /* DefinitionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionResponse.swift; sourceTree = "<group>"; };
 		13D8F6CE2152179C003F573C /* InflectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflectionResponse.swift; sourceTree = "<group>"; };
 		13D8F6D02152180E003F573C /* TermDefiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDefiner.swift; sourceTree = "<group>"; };
@@ -183,6 +191,9 @@
 		13644F1A214ED7B700F20718 /* Mocab */ = {
 			isa = PBXGroup;
 			children = (
+				13CCAD8721535802004534F5 /* Errors */,
+				13CCAD8421534F89004534F5 /* Extensions */,
+				1385266D21533F910024F099 /* Views */,
 				1334C6FF2150C0C4002B17E6 /* Services */,
 				1334C6FB2150BEE1002B17E6 /* Utils */,
 				1334C6FA2150BEA5002B17E6 /* Controllers */,
@@ -212,6 +223,31 @@
 				13644F3D214ED7BA00F20718 /* Info.plist */,
 			);
 			path = MocabUITests;
+			sourceTree = "<group>";
+		};
+		1385266D21533F910024F099 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1385266E215341660024F099 /* NewWordCell.swift */,
+				135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		13CCAD8421534F89004534F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				13CCAD8521534F9C004534F5 /* UITextField.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		13CCAD8721535802004534F5 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				13CCAD882153580D004534F5 /* UnexpectedPayloadError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		13D8F6CB21521760003F573C /* Responses */ = {
@@ -372,13 +408,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */,
+				1385266F215341660024F099 /* NewWordCell.swift in Sources */,
 				1334C6FD2150BEEE002B17E6 /* JSONMapper.swift in Sources */,
 				13D8F6D12152180E003F573C /* TermDefiner.swift in Sources */,
+				135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */,
 				13D8F6CD21521771003F573C /* DefinitionResponse.swift in Sources */,
 				13D8F6D321521844003F573C /* Language.swift in Sources */,
 				1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */,
 				1385266821531D2F0024F099 /* TermService.swift in Sources */,
 				13D8F6CF2152179C003F573C /* InflectionResponse.swift in Sources */,
+				13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */,
+				13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */,
 				13644F1E214ED7B700F20718 /* LearningTermsController.swift in Sources */,
 				13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */,
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
