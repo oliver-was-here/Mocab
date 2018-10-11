@@ -42,7 +42,6 @@
                                             <constraints>
                                                 <constraint firstItem="Ipy-Wx-4EH" firstAttribute="leading" secondItem="ejo-Mk-Bm5" secondAttribute="leading" id="IdU-kH-vQL"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ipy-Wx-4EH" secondAttribute="trailing" id="Km8-gt-gik"/>
-                                                <constraint firstItem="Ipy-Wx-4EH" firstAttribute="centerX" secondItem="ejo-Mk-Bm5" secondAttribute="centerX" id="raW-Z0-ets"/>
                                                 <constraint firstItem="Ipy-Wx-4EH" firstAttribute="centerY" secondItem="ejo-Mk-Bm5" secondAttribute="centerY" id="wGR-GQ-Ow5"/>
                                             </constraints>
                                         </tableViewCellContentView>
