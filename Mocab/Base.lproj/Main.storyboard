@@ -29,9 +29,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="what would you like to know?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipy-Wx-4EH" userLabel="New word">
-                                                    <rect key="frame" x="15" y="6" width="97" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="what would you like to know?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipy-Wx-4EH" userLabel="New word">
+                                                    <rect key="frame" x="0.0" y="7" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -40,6 +39,12 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ipy-Wx-4EH" firstAttribute="leading" secondItem="ejo-Mk-Bm5" secondAttribute="leading" id="IdU-kH-vQL"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ipy-Wx-4EH" secondAttribute="trailing" id="Km8-gt-gik"/>
+                                                <constraint firstItem="Ipy-Wx-4EH" firstAttribute="centerX" secondItem="ejo-Mk-Bm5" secondAttribute="centerX" id="raW-Z0-ets"/>
+                                                <constraint firstItem="Ipy-Wx-4EH" firstAttribute="centerY" secondItem="ejo-Mk-Bm5" secondAttribute="centerY" id="wGR-GQ-Ow5"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="newWord" destination="Ipy-Wx-4EH" id="HXs-qY-htG"/>
