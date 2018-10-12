@@ -3,14 +3,16 @@ import UIKit
 class LearningTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
     private var learningTerms: [Term] {
-        return ServiceInjector.termsService.getAll()
+        return ServiceInjector.termsService
+            .getAll()
+            .filter { $0.status == Term.Status.inProgress }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         termsTable.dataSource = self
-    }   
+    }
 }
 
 extension LearningTermsController: UITableViewDataSource {
@@ -19,28 +21,14 @@ extension LearningTermsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch (Section.init(rawValue: section)) {
-        case .learning?:
-            return learningTerms.count + 1
-        default:
-            return 0
-        }
+        return learningTerms.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch (Section.init(rawValue: indexPath.section)) {
-        case .learning?:
-            let isInputCell: Bool = indexPath.row > learningTerms.count - 1
-            return isInputCell
-                ? createNewTermCell(forTable: tableView)
-                : LearningTermsController.createTermCell(term: learningTerms[indexPath.row], tableView)
-        default:
-            return UITableViewCell()
-        }
-    }
-    
-    enum Section: Int {
-        case learning = 0
+        let isInputCell: Bool = indexPath.row > learningTerms.count - 1
+        return isInputCell
+            ? createNewTermCell(forTable: tableView)
+            : LearningTermsController.createTermCell(term: learningTerms[indexPath.row], tableView)
     }
     
     // Mark: Private
@@ -93,7 +81,7 @@ extension LearningTermsController: UITextFieldDelegate {
             else {
                 throw UnexpectedPayloadError(message: "empty definition list")
             }
-        let term = Term.init(asEntered: receivedTerm, definition: definition)
+        let term = Term(asEntered: receivedTerm, definition: definition)
         ServiceInjector.termsService.save(term)
     }
 }

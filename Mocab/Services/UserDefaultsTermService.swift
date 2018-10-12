@@ -1,12 +1,12 @@
 import Foundation
 
 class UserDefaultsTermService: TermService {
-    private static let LEARNING_TERMS_KEY = "terms"
+    private static let TERMS_KEY = "usersTerms"
     private static let defaults = UserDefaults.standard
     
     static func getAll() -> [Term] {
         guard let learningTermsJson = defaults
-            .object(forKey: self.LEARNING_TERMS_KEY) as? Data
+            .object(forKey: self.TERMS_KEY) as? Data
             else {
                 return [Term]()
             }
@@ -22,7 +22,9 @@ class UserDefaultsTermService: TermService {
     }
     
     static func getInProgressTerm() -> Term? {
-        return getAll().first
+        return getAll().first(where: { t in
+            t.status == Term.Status.inProgress
+        })
     }
     
     static func save(_ newTerm: Term) {
@@ -39,7 +41,7 @@ class UserDefaultsTermService: TermService {
     static private func save(terms: [Term]) {
         do {
             let encodedTerms = try JSONMapper.encoderInstance.encode(terms)
-            defaults.set(encodedTerms, forKey: self.LEARNING_TERMS_KEY)
+            defaults.set(encodedTerms, forKey: self.TERMS_KEY)
         } catch {
             print("ERROR: data-corruption in save([Term]): \(error)")
         }
