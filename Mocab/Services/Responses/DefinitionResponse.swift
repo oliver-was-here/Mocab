@@ -1,21 +1,21 @@
 import Foundation
 
-struct DefinitionResponse: Codable {
+struct DefinitionResponse: Decodable {
     let results: [DefinitionResult]
 }
 
-struct DefinitionResult: Codable {
+struct DefinitionResult: Decodable {
     let lexicalEntries: [DefinitionLexicalEntry]
 }
 
-struct DefinitionLexicalEntry: Codable {
+struct DefinitionLexicalEntry: Decodable {
     let entries: [DefinitionEntry]
 }
 
-struct DefinitionEntry: Codable {
+struct DefinitionEntry: Decodable {
     let senses: [DefinitionSense]
 }
 
-struct DefinitionSense: Codable {
+struct DefinitionSense: Decodable {
     let definitions: [String]
 }
