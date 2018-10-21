@@ -26,6 +26,7 @@
 		1385266A2153210D0024F099 /* UserDefaultsTermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138526692153210D0024F099 /* UserDefaultsTermService.swift */; };
 		1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266B2153224E0024F099 /* ServiceInjector.swift */; };
 		1385266F215341660024F099 /* NewWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewWordCell.swift */; };
+		13AE78B7217D1E64002B440C /* MasteredTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78B6217D1E64002B440C /* MasteredTermsController.swift */; };
 		13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */; };
 		13C8DA092152027900B3FA5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA082152027900B3FA5D /* Alamofire.framework */; };
 		13C8DA0B2152028200B3FA5D /* PMKAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */; };
@@ -99,6 +100,7 @@
 		138526692153210D0024F099 /* UserDefaultsTermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTermService.swift; sourceTree = "<group>"; };
 		1385266B2153224E0024F099 /* ServiceInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjector.swift; sourceTree = "<group>"; };
 		1385266E215341660024F099 /* NewWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordCell.swift; sourceTree = "<group>"; };
+		13AE78B6217D1E64002B440C /* MasteredTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteredTermsController.swift; sourceTree = "<group>"; };
 		13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTermStatusDelegate.swift; sourceTree = "<group>"; };
 		13C8DA082152027900B3FA5D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKAlamofire.framework; path = Carthage/Build/iOS/PMKAlamofire.framework; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				13644F1D214ED7B700F20718 /* LearningTermsController.swift */,
 				135FCC7E217002D300C3A633 /* SnoozedTermsController.swift */,
+				13AE78B6217D1E64002B440C /* MasteredTermsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */,
 				13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */,
 				13644F1E214ED7B700F20718 /* LearningTermsController.swift in Sources */,
+				13AE78B7217D1E64002B440C /* MasteredTermsController.swift in Sources */,
 				13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */,
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
 				13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */,
