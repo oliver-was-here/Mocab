@@ -98,7 +98,7 @@ extension LearningTermsController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
-        let snoozeTerm = SwipeAction(style: .default, title: "Snoozed") { action, indexPath in
+        let snoozeTerm = SwipeAction(style: .default, title: "Snooze") { action, indexPath in
             guard let cell = tableView.cellForRow(at: indexPath) as? ExistingTermCell,
             var term = cell.term
                 else {

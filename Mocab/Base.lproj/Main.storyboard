@@ -141,7 +141,7 @@
                                 <rect key="frame" x="16" y="78" width="343" height="461"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SNOOZED_TERM" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SNOOZED_TERM" textLabel="kEs-cv-sOH" detailTextLabel="l7x-3x-mQX" style="IBUITableViewCellStyleSubtitle" id="5X3-nr-STZ" customClass="SnoozedTermCell" customModule="Mocab" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SNOOZED_TERM" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EXISTING_TERM" textLabel="kEs-cv-sOH" detailTextLabel="l7x-3x-mQX" style="IBUITableViewCellStyleSubtitle" id="5X3-nr-STZ" customClass="ExistingTermCell" customModule="Mocab" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5X3-nr-STZ" id="mTJ-Sg-cH5">
