@@ -72,6 +72,8 @@ extension LearningTermsController: UITextFieldDelegate {
                 textField.text = nil
                 self.termsTable.reloadData()
             }.catch { error in
+                let alert: UIAlertController = AlertProvider.errorAlert(message: "We were unable to find a definition for that word.")
+                self.present(alert, animated: true)
                 print("ERROR: Unable to get definitions: \(error)")
             }
     }
