@@ -12,6 +12,9 @@
 		1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */; };
 		135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */; };
 		135FCC7F217002D300C3A633 /* SnoozedTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7E217002D300C3A633 /* SnoozedTermsController.swift */; };
+		135FCC872170599E00C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
+		135FCC88217059A300C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
+		135FCC89217059A300C3A633 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1B214ED7B700F20718 /* AppDelegate.swift */; };
 		13644F1E214ED7B700F20718 /* LearningTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1D214ED7B700F20718 /* LearningTermsController.swift */; };
 		13644F21214ED7B700F20718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13644F1F214ED7B700F20718 /* Main.storyboard */; };
@@ -63,6 +66,7 @@
 			files = (
 				13D8F6C72152084C003F573C /* PMKAlamofire.framework in Embed Frameworks */,
 				13D8F6C92152084C003F573C /* Alamofire.framework in Embed Frameworks */,
+				135FCC89217059A300C3A633 /* SwipeCellKit.framework in Embed Frameworks */,
 				13D8F6C52152084C003F573C /* PromiseKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -76,6 +80,7 @@
 		1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OxfordDictionaryService.swift; sourceTree = "<group>"; };
 		135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTermCell.swift; sourceTree = "<group>"; };
 		135FCC7E217002D300C3A633 /* SnoozedTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnoozedTermsController.swift; sourceTree = "<group>"; };
+		135FCC862170599E00C3A633 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		13644F18214ED7B700F20718 /* Mocab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13644F1B214ED7B700F20718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13644F1D214ED7B700F20718 /* LearningTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningTermsController.swift; sourceTree = "<group>"; };
@@ -110,7 +115,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13C8DA0D2152028C00B3FA5D /* PromiseKit.framework in Frameworks */,
+				135FCC88217059A300C3A633 /* SwipeCellKit.framework in Frameworks */,
 				13C8DA0B2152028200B3FA5D /* PMKAlamofire.framework in Frameworks */,
+				135FCC872170599E00C3A633 /* SwipeCellKit.framework in Frameworks */,
 				13C8DA092152027900B3FA5D /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +273,7 @@
 		13F80E4F2151E5700044AD22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				135FCC862170599E00C3A633 /* SwipeCellKit.framework */,
 				13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */,
 				13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */,
 				13C8DA082152027900B3FA5D /* Alamofire.framework */,

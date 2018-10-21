@@ -1,4 +1,5 @@
 import UIKit
+import SwipeCellKit
 
 class LearningTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
@@ -28,19 +29,22 @@ extension LearningTermsController: UITableViewDataSource {
         let isInputCell: Bool = indexPath.row > learningTerms.count - 1
         return isInputCell
             ? createNewTermCell(forTable: tableView)
-            : LearningTermsController.createTermCell(term: learningTerms[indexPath.row], tableView)
+            : createTermCell(term: getTerm(at: indexPath), tableView)
     }
     
     // Mark: Private
     
-    static private func createTermCell(term: Term, _ tableView: UITableView) -> UITableViewCell {
+    fileprivate func getTerm(at indexPath: IndexPath) -> Term {
+        return learningTerms[indexPath.row]
+    }
+    
+    private func createTermCell(term: Term, _ tableView: UITableView) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExistingTermCell.ID) as? ExistingTermCell
             else {
                 return UITableViewCell()
             }
         
-        cell.configure(term: term)
-        
+        cell.configure(term: term, delegate: self)
         return cell
     }
     
@@ -81,7 +85,32 @@ extension LearningTermsController: UITextFieldDelegate {
             else {
                 throw UnexpectedPayloadError(message: "empty definition list")
             }
-        let term = Term(asEntered: receivedTerm, definition: definition)
+        let term = Term(
+            asEntered: receivedTerm,
+            definition: definition,
+            status: Term.Status.inProgress
+        )
         ServiceInjector.termsService.save(term)
+    }
+}
+
+extension LearningTermsController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let snoozeTerm = SwipeAction(style: .default, title: "Snoozed") { action, indexPath in
+            guard let cell = tableView.cellForRow(at: indexPath) as? ExistingTermCell,
+            var term = cell.term
+                else {
+                    return
+                }
+            
+            term.status = Term.Status.snoozed
+            ServiceInjector.termsService.save(term)
+            
+            tableView.reloadData()
+        }
+        
+        return [snoozeTerm]
     }
 }

@@ -32,6 +32,7 @@ extension SnoozedTermsController: UITableViewDataSource {
                 return UITableViewCell()
             }
    
+        cell.configure(term: snoozedTerms[indexPath.row])
         return cell
     }
 }

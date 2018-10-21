@@ -4,6 +4,7 @@ class UserDefaultsTermService: TermService {
     private static let TERMS_KEY = "usersTerms"
     private static let defaults = UserDefaults.standard
     
+    // MARK: TermService
     static func getAll() -> [Term] {
         guard let learningTermsJson = defaults
             .object(forKey: self.TERMS_KEY) as? Data
@@ -28,7 +29,8 @@ class UserDefaultsTermService: TermService {
     }
     
     static func save(_ newTerm: Term) {
-        let terms = filterDuplicates(terms: [newTerm] + getAll())
+        let terms = [newTerm] + filterDuplicates(terms: getAll()).filter { $0.id != newTerm.id }
+        
         save(terms: terms)
     }
     
@@ -48,6 +50,7 @@ class UserDefaultsTermService: TermService {
     }
     
     static private func filterDuplicates(terms: [Term]) -> [Term] {
+        // todo - this method may not be necessary, but it also isn't hurting
         var takenTerms: Set<String> = Set()
         return terms.filter {
             let (inserted, _) = takenTerms.insert($0.id)

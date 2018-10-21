@@ -3,7 +3,7 @@ import Foundation
 struct Term: Codable {
     let asEntered: String
     let definition: String // todo list of definitions
-    let status: Status = .inProgress
+    var status: Status
     
     enum Status: String, Codable {
         case inProgress
