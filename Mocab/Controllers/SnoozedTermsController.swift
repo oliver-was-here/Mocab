@@ -1,10 +1,10 @@
 import UIKit
 import Foundation
-import SwipeCellKit
 
 class SnoozedTermsController: UIViewController {    
     @IBOutlet weak var termsTable: UITableView!
-    
+
+    private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.snoozed)
     private var snoozedTerms: [Term] {
         return ServiceInjector.termsService
             .getAll()
@@ -33,28 +33,7 @@ extension SnoozedTermsController: UITableViewDataSource {
                 return UITableViewCell()
             }
    
-        cell.configure(term: snoozedTerms[indexPath.row], delegate: self)
+        cell.configure(term: snoozedTerms[indexPath.row], delegate: swipeDelegate)
         return cell
-    }
-}
-
-extension SnoozedTermsController: SwipeTableViewCellDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let snoozeTerm = SwipeAction(style: .default, title: "Unsnooze") { action, indexPath in
-            guard let cell = tableView.cellForRow(at: indexPath) as? ExistingTermCell,
-                var term = cell.term
-                else {
-                    return
-            }
-            
-            term.status = Term.Status.inProgress
-            ServiceInjector.termsService.save(term)
-            
-            tableView.reloadData()
-        }
-        
-        return [snoozeTerm]
     }
 }

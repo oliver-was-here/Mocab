@@ -1,13 +1,14 @@
 import UIKit
-import SwipeCellKit
 
 class LearningTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
+    
     private var learningTerms: [Term] {
         return ServiceInjector.termsService
             .getAll()
             .filter { $0.status == Term.Status.inProgress }
     }
+    private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.inProgress)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,7 @@ extension LearningTermsController: UITableViewDataSource {
                 return UITableViewCell()
             }
         
-        cell.configure(term: term, delegate: self)
+        cell.configure(term: term, delegate: swipeDelegate)
         return cell
     }
     
@@ -91,26 +92,5 @@ extension LearningTermsController: UITextFieldDelegate {
             status: Term.Status.inProgress
         )
         ServiceInjector.termsService.save(term)
-    }
-}
-
-extension LearningTermsController: SwipeTableViewCellDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let snoozeTerm = SwipeAction(style: .default, title: "Snooze") { action, indexPath in
-            guard let cell = tableView.cellForRow(at: indexPath) as? ExistingTermCell,
-            var term = cell.term
-                else {
-                    return
-                }
-            
-            term.status = Term.Status.snoozed
-            ServiceInjector.termsService.save(term)
-            
-            tableView.reloadData()
-        }
-        
-        return [snoozeTerm]
     }
 }
