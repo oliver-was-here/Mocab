@@ -29,7 +29,7 @@ class UserDefaultsTermService: TermService {
     }
     
     static func save(_ newTerm: Term) {
-        let terms = [newTerm] + filterDuplicates(terms: getAll()).filter { $0.id != newTerm.id }
+        let terms = [newTerm] + getAll().filter { $0.id != newTerm.id }
         
         save(terms: terms)
     }
@@ -46,15 +46,6 @@ class UserDefaultsTermService: TermService {
             defaults.set(encodedTerms, forKey: self.TERMS_KEY)
         } catch {
             print("ERROR: data-corruption in save([Term]): \(error)")
-        }
-    }
-    
-    static private func filterDuplicates(terms: [Term]) -> [Term] {
-        // todo - this method may not be necessary, but it also isn't hurting
-        var takenTerms: Set<String> = Set()
-        return terms.filter {
-            let (inserted, _) = takenTerms.insert($0.id)
-            return inserted
         }
     }
 }
