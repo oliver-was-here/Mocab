@@ -20,16 +20,13 @@ class OxfordDictionaryService: TermDefiner {
     
     static func getDefinitions(forWord word: String) -> Promise<[String]> {
         let normalizedWord = word.lowercased()
-        let url = OxfordDictionaryService.createInflectionsURL(word: normalizedWord)
-
+    
+        if !validWord(word: normalizedWord) {
+            return Promise.value([])
+        }
+        
         return firstly {
-            Alamofire               // todo see about custom .validate()
-                .request(url, headers: headers)
-                .responseDecodable(InflectionResponse.self)
-        }.compactMap { response in
-            getRootWord(inflectionWord: normalizedWord, fromResponse: response)
-        }.then { rootWord in
-            requestDefinition(forRoot: rootWord)
+            requestDefinition(forRoot: normalizedWord)
         }.map { response in
             getDefinitions(fromResponse: response)
         }
@@ -37,24 +34,29 @@ class OxfordDictionaryService: TermDefiner {
     
     // MARK: Private
     
-    private static func requestDefinition(forRoot word: InflectionWord) -> Promise<DefinitionResponse> {
-        let url = createEntriesURL(word: word.id)
+    static private func validWord(word: String) -> Bool {
+        if word.split(separator: " ").count > 1 {
+            return false
+        }
+        
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(
+            in: word,
+            range: range,
+            startingAt: 0,
+            wrap: false,
+            language: "en"
+        )
+        
+        return misspelledRange.location == NSNotFound
+    }
+    
+    private static func requestDefinition(forRoot word: String) -> Promise<DefinitionResponse> {
+        let url = createEntriesURL(word: word)
         return Alamofire               // todo see about custom .validate()
             .request(url, headers: headers)
             .responseDecodable(DefinitionResponse.self)
-    }
-    
-    private static func getRootWord(
-        inflectionWord sourceInflection: String,
-        fromResponse response: InflectionResponse
-        ) -> InflectionWord? {
-        let terms = response.results.flatMap {
-            return $0.lexicalEntries.flatMap {
-                return $0.inflectionOf
-            }
-        }
-        
-        return terms.first { $0.id == sourceInflection } ?? terms.first
     }
     
     private static func getDefinitions(
