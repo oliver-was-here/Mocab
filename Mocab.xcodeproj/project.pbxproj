@@ -168,6 +168,9 @@
 		1334C6FB2150BEE1002B17E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */,
+				13AE78BF217D33CC002B440C /* AlertProvider.swift */,
+				13CC14C1217EB6B300091468 /* TermTableViewDelegate.swift */,
 				1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */,
 				13D8F6D221521844003F573C /* Language.swift */,
 			);
@@ -210,7 +213,6 @@
 		13644F1A214ED7B700F20718 /* Mocab */ = {
 			isa = PBXGroup;
 			children = (
-				13AE78B8217D26C6002B440C /* Helpers */,
 				13CCAD8721535802004534F5 /* Errors */,
 				13CCAD8421534F89004534F5 /* Extensions */,
 				1385266D21533F910024F099 /* Views */,
@@ -252,16 +254,6 @@
 				135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		13AE78B8217D26C6002B440C /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */,
-				13AE78BF217D33CC002B440C /* AlertProvider.swift */,
-				13CC14C1217EB6B300091468 /* TermTableViewDelegate.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		13CCAD8421534F89004534F5 /* Extensions */ = {
