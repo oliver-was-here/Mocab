@@ -12,7 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         center.requestAuthorization(options: [.alert]) { (granted, error) in
-            // Enable or disable features based on authorization.
+            if let error = error {
+                print("ERROR: requestAuthorization failed: \(error)")
+            }
         }
         
         return true
