@@ -9,14 +9,17 @@ class LearningTermsController: UIViewController {
             .filter { $0.status == Term.Status.inProgress }
     }
     private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.inProgress)
+    private let tableDelegate = TermTableViewDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        termsTable.delegate = tableDelegate
         termsTable.dataSource = self
     }
 }
 
+// MARK: UITableViewDataSource
 extension LearningTermsController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -60,6 +63,7 @@ extension LearningTermsController: UITableViewDataSource {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension LearningTermsController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let receivedTerm = textField.text

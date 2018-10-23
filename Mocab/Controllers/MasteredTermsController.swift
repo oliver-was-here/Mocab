@@ -11,10 +11,12 @@ class MasteredTermsController: UIViewController {
             .filter { $0.status == Term.Status.mastered }
     }
     private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.mastered)
+    private let tableDelegate = TermTableViewDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        termsTable.delegate = tableDelegate
         termsTable.dataSource = self
     }
 }

@@ -10,10 +10,12 @@ class SnoozedTermsController: UIViewController {
             .getAll()
             .filter { $0.status == Term.Status.snoozed }
     }
+    private let tableDelegate = TermTableViewDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        termsTable.delegate = tableDelegate
         termsTable.dataSource = self
     }
 }

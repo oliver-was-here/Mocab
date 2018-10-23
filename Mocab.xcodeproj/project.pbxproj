@@ -32,6 +32,7 @@
 		13C8DA092152027900B3FA5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA082152027900B3FA5D /* Alamofire.framework */; };
 		13C8DA0B2152028200B3FA5D /* PMKAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */; };
 		13C8DA0D2152028C00B3FA5D /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */; };
+		13CC14C2217EB6B300091468 /* TermTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC14C1217EB6B300091468 /* TermTableViewDelegate.swift */; };
 		13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAD8521534F9C004534F5 /* UITextField.swift */; };
 		13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAD882153580D004534F5 /* UnexpectedPayloadError.swift */; };
 		13D8F6C52152084C003F573C /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -107,6 +108,7 @@
 		13C8DA082152027900B3FA5D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKAlamofire.framework; path = Carthage/Build/iOS/PMKAlamofire.framework; sourceTree = "<group>"; };
 		13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		13CC14C1217EB6B300091468 /* TermTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermTableViewDelegate.swift; sourceTree = "<group>"; };
 		13CCAD8521534F9C004534F5 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		13CCAD882153580D004534F5 /* UnexpectedPayloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnexpectedPayloadError.swift; sourceTree = "<group>"; };
 		13D8F6CC21521771003F573C /* DefinitionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionResponse.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */,
 				13AE78BF217D33CC002B440C /* AlertProvider.swift */,
+				13CC14C1217EB6B300091468 /* TermTableViewDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				135FCC7F217002D300C3A633 /* SnoozedTermsController.swift in Sources */,
 				1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */,
 				13AE78C0217D33CC002B440C /* AlertProvider.swift in Sources */,
+				13CC14C2217EB6B300091468 /* TermTableViewDelegate.swift in Sources */,
 				1385266821531D2F0024F099 /* TermService.swift in Sources */,
 				13D8F6CF2152179C003F573C /* InflectionResponse.swift in Sources */,
 				13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */,
