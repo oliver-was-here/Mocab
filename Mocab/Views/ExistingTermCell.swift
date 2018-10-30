@@ -3,7 +3,6 @@ import UIKit
 import SwipeCellKit
 
 class ExistingTermCell: SwipeTableViewCell {
-    static let NIB = "ExistingTermCell"
     static let ID = "EXISTING_TERM"
     var modelView: TermModelView?
     
@@ -15,12 +14,5 @@ class ExistingTermCell: SwipeTableViewCell {
         definitionLabel?.text = modelView.definition
         self.modelView = modelView
         self.delegate = delegate
-    }
-    
-    static func register(tableView: UITableView) {
-        tableView.register(
-            UINib(nibName: "ExistingTermCell", bundle: Bundle.main),
-            forCellReuseIdentifier: ExistingTermCell.ID
-        )
     }
 }
