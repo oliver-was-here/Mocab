@@ -28,46 +28,29 @@
                                 <rect key="frame" x="16" y="60" width="343" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EXISTING_TERM" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EXISTING_TERM" rowHeight="59" id="rl7-VE-dNd" userLabel="ExistingTermCell" customClass="ExistingTermCell" customModule="Mocab" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EXISTING_TERM" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EXISTING_TERM" textLabel="iw4-zC-Wjq" detailTextLabel="zSj-Qh-E63" rowHeight="59" style="IBUITableViewCellStyleSubtitle" id="rl7-VE-dNd" userLabel="ExistingTermCell" customClass="ExistingTermCell" customModule="Mocab" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rl7-VE-dNd" id="b8k-pt-jma">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sST-7P-5Ko">
-                                                    <rect key="frame" x="16" y="11" width="310" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="3th-eX-zLm"/>
-                                                    </constraints>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iw4-zC-Wjq">
+                                                    <rect key="frame" x="15" y="9" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxo-wj-SJW">
-                                                    <rect key="frame" x="16" y="33" width="311" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zSj-Qh-E63">
+                                                    <rect key="frame" x="15" y="32.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Dxo-wj-SJW" firstAttribute="leading" secondItem="b8k-pt-jma" secondAttribute="leading" constant="16" id="7DJ-mf-g9z"/>
-                                                <constraint firstItem="Dxo-wj-SJW" firstAttribute="top" secondItem="sST-7P-5Ko" secondAttribute="bottom" constant="1" id="Nr4-Hq-4j5"/>
-                                                <constraint firstAttribute="trailing" secondItem="sST-7P-5Ko" secondAttribute="trailing" constant="17" id="Sdw-nX-Ube"/>
-                                                <constraint firstAttribute="bottom" secondItem="Dxo-wj-SJW" secondAttribute="bottom" constant="5" id="Wz7-e1-WOx"/>
-                                                <constraint firstItem="sST-7P-5Ko" firstAttribute="top" secondItem="b8k-pt-jma" secondAttribute="top" constant="11" id="b8d-cQ-pRT"/>
-                                                <constraint firstAttribute="trailing" secondItem="Dxo-wj-SJW" secondAttribute="trailing" constant="16" id="zCM-R0-xAa"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="sST-7P-5Ko" firstAttribute="leading" secondItem="rl7-VE-dNd" secondAttribute="leading" constant="16" id="HBJ-f7-S5X"/>
-                                            <constraint firstItem="sST-7P-5Ko" firstAttribute="top" secondItem="rl7-VE-dNd" secondAttribute="top" constant="11" id="hiR-Iq-Dyb"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="definitionLabel" destination="Dxo-wj-SJW" id="LxN-XC-H6U"/>
-                                            <outlet property="termLabel" destination="sST-7P-5Ko" id="b6c-Z8-tAi"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NEW_WORD" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NEW_WORD" id="PN4-nc-YKc" customClass="NewWordCell" customModule="Mocab" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="87" width="343" height="44"/>
