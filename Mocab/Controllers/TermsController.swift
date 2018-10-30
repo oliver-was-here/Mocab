@@ -1,14 +1,14 @@
 import UIKit
 
-class LearningTermsController: UIViewController {
+class TermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
     @IBOutlet weak var screenTitle: UILabel!
     
     private static let INIT_STATUS = Term.Status.inProgress
-    private var statusType: Term.Status = LearningTermsController.INIT_STATUS {
+    private var statusType: Term.Status = TermsController.INIT_STATUS {
         didSet {
             termsTable.reloadData()
-            swipeDelegate = SwipeTermStatusDelegateFactory(forTermType: statusType)
+            swipeDelegate = SwipeTermStatusDelegate(forTermType: statusType)
             
             switch(statusType) {
             case .inProgress: screenTitle?.text = "in progress"
@@ -17,7 +17,7 @@ class LearningTermsController: UIViewController {
             }
         }
     }
-    private var swipeDelegate = SwipeTermStatusDelegateFactory(forTermType: LearningTermsController.INIT_STATUS)
+    private var swipeDelegate = SwipeTermStatusDelegate(forTermType: TermsController.INIT_STATUS)
     private var learningTerms: [TermModelView] {
         let terms = TermModelViewImplFactory.getViewModels(for: statusType)
         
@@ -51,7 +51,7 @@ class LearningTermsController: UIViewController {
 }
 
 // MARK: UITableViewDataSource
-extension LearningTermsController: UITableViewDataSource {
+extension TermsController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -99,7 +99,7 @@ extension LearningTermsController: UITableViewDataSource {
 }
 
 // MARK: UITextFieldDelegate
-extension LearningTermsController: UITextFieldDelegate {
+extension TermsController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let receivedTerm = textField.text
             else { return }
@@ -107,7 +107,7 @@ extension LearningTermsController: UITextFieldDelegate {
         ServiceInjector.definer
             .getDefinitions(forWord: receivedTerm)
             .done { definitions in
-                try LearningTermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
+                try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
                 textField.text = nil
                 self.termsTable.reloadData()
             }.catch { error in

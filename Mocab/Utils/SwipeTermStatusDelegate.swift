@@ -1,7 +1,7 @@
 import Foundation
 import SwipeCellKit
 
-class SwipeTermStatusDelegateFactory: SwipeTableViewCellDelegate {
+class SwipeTermStatusDelegate: SwipeTableViewCellDelegate {
     private let termType: Term.Status
     
     init(forTermType termType: Term.Status) {

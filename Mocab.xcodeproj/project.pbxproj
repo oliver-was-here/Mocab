@@ -15,7 +15,7 @@
 		135FCC88217059A300C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
 		135FCC89217059A300C3A633 /* SwipeCellKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1B214ED7B700F20718 /* AppDelegate.swift */; };
-		13644F1E214ED7B700F20718 /* LearningTermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1D214ED7B700F20718 /* LearningTermsController.swift */; };
+		13644F1E214ED7B700F20718 /* TermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F1D214ED7B700F20718 /* TermsController.swift */; };
 		13644F21214ED7B700F20718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13644F1F214ED7B700F20718 /* Main.storyboard */; };
 		13644F23214ED7BA00F20718 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13644F22214ED7BA00F20718 /* Assets.xcassets */; };
 		13644F26214ED7BA00F20718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13644F24214ED7BA00F20718 /* LaunchScreen.storyboard */; };
@@ -87,7 +87,7 @@
 		135FCC862170599E00C3A633 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		13644F18214ED7B700F20718 /* Mocab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13644F1B214ED7B700F20718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		13644F1D214ED7B700F20718 /* LearningTermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningTermsController.swift; sourceTree = "<group>"; };
+		13644F1D214ED7B700F20718 /* TermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsController.swift; sourceTree = "<group>"; };
 		13644F20214ED7B700F20718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13644F22214ED7BA00F20718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13644F25214ED7BA00F20718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		1334C6FA2150BEA5002B17E6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				13644F1D214ED7B700F20718 /* LearningTermsController.swift */,
+				13644F1D214ED7B700F20718 /* TermsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -458,7 +458,7 @@
 				13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */,
 				13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */,
 				13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */,
-				13644F1E214ED7B700F20718 /* LearningTermsController.swift in Sources */,
+				13644F1E214ED7B700F20718 /* TermsController.swift in Sources */,
 				13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */,
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
 				13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */,
