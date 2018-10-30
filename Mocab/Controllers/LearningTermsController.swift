@@ -3,10 +3,15 @@ import UIKit
 class LearningTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
     
-    private var learningTerms: [Term] {
-        return ServiceInjector.termsService
-            .getAll()
-            .filter { $0.status == Term.Status.inProgress }
+    private var learningTerms: [TermModelView] {
+        let terms = TermModelViewImplFactory.getViewModels(for: Term.Status.inProgress)
+        
+        terms.forEach {
+            $0.statusUpdated = {
+                self.termsTable.reloadData()
+            }
+        }
+        return terms
     }
     private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.inProgress)
     private let tableDelegate = TermTableViewDelegate()
@@ -39,17 +44,17 @@ extension LearningTermsController: UITableViewDataSource {
     
     // Mark: Private
     
-    fileprivate func getTerm(at indexPath: IndexPath) -> Term {
+    fileprivate func getTerm(at indexPath: IndexPath) -> TermModelView {
         return learningTerms[indexPath.row]
     }
     
-    private func createTermCell(term: Term, _ tableView: UITableView) -> UITableViewCell {
+    private func createTermCell(term: TermModelView, _ tableView: UITableView) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExistingTermCell.ID) as? ExistingTermCell
             else {
                 return UITableViewCell()
             }
         
-        cell.configure(term: term, delegate: swipeDelegate)
+        cell.configure(modelView: term, delegate: swipeDelegate)
         return cell
     }
     

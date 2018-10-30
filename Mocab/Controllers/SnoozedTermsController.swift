@@ -5,10 +5,15 @@ class SnoozedTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
 
     private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.snoozed)
-    private var snoozedTerms: [Term] {
-        return ServiceInjector.termsService
-            .getAll()
-            .filter { $0.status == Term.Status.snoozed }
+    private var snoozedTerms: [TermModelView] {
+        let terms = TermModelViewImplFactory.getViewModels(for: Term.Status.snoozed)
+        
+        terms.forEach {
+            $0.statusUpdated = {
+                self.termsTable.reloadData()
+            }
+        }
+        return terms
     }
     private let tableDelegate = TermTableViewDelegate()
     
@@ -36,7 +41,7 @@ extension SnoozedTermsController: UITableViewDataSource {
                 return UITableViewCell()
             }
    
-        cell.configure(term: snoozedTerms[indexPath.row], delegate: swipeDelegate)
+        cell.configure(modelView: snoozedTerms[indexPath.row], delegate: swipeDelegate)
         return cell
     }
 }

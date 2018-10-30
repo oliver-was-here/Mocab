@@ -42,14 +42,11 @@ class SwipeTermStatusDelegateFactory: SwipeTableViewCellDelegate {
     
     private func updateTerm(tableView: UITableView, at indexPath: IndexPath, newStatus: Term.Status) {
         guard let cell = tableView.cellForRow(at: indexPath) as? ExistingTermCell,
-            var term = cell.term
+            let modelView = cell.modelView
             else {
                 return
-        }
+            }
         
-        term.status = newStatus
-        ServiceInjector.termsService.save(term)
-        
-        tableView.reloadData()
+        modelView.selectedNewStatus(newStatus)
     }
 }

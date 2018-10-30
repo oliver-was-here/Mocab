@@ -42,7 +42,7 @@ extension MasteredTermsController: UITableViewDataSource {
                 return UITableViewCell()
         }
         
-        cell.configure(term: masteredTerms[indexPath.row], delegate: swipeDelegate)
+        cell.configure(modelView: masteredTerms[indexPath.row], delegate: swipeDelegate)
         return cell
     }
 }
