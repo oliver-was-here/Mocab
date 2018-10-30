@@ -3,18 +3,13 @@ import UIKit
 import SwipeCellKit
 
 class ExistingTermCell: SwipeTableViewCell {
+    static let NIB = "ExistingTermCell"
     static let ID = "EXISTING_TERM"
     static let COLLAPSED_LINE_LIMIT = 3
     var term: Term?
     
-    @IBOutlet weak var input: UITextField!
-    func configure(term: Term, delegate: SwipeTableViewCellDelegate) {
-        textLabel?.text = term.asEntered
-        detailTextLabel?.text = term.definition
-        collapseDescription()
-        self.term = term
-        self.delegate = delegate
-    }
+    @IBOutlet weak var termLabel: UILabel!
+    @IBOutlet weak var definitionLabel: UILabel!
     
     func expandDescription() {
         detailTextLabel?.numberOfLines = Int.max

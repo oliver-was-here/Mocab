@@ -14,6 +14,7 @@ class LearningTermsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ExistingTermCell.register(tableView: termsTable)
         termsTable.delegate = tableDelegate
         termsTable.dataSource = self
     }

@@ -5,17 +5,23 @@ import SwipeCellKit
 class MasteredTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
     
-    private var masteredTerms: [Term] {
-        return ServiceInjector.termsService
-            .getAll()
-            .filter { $0.status == Term.Status.mastered }
+    private var masteredTerms: [TermModelView] {
+        let terms = TermModelViewImplFactory.getViewModels(for: Term.Status.mastered)
+        
+        terms.forEach {
+            $0.statusUpdated = {
+                self.termsTable.reloadData()
+            }
+        }
+        return terms
     }
     private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.mastered)
     private let tableDelegate = TermTableViewDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        ExistingTermCell.register(tableView: termsTable)
         termsTable.delegate = tableDelegate
         termsTable.dataSource = self
     }
