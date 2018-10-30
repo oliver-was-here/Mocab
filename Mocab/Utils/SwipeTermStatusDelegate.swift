@@ -17,7 +17,7 @@ class SwipeTermStatusDelegateFactory: SwipeTableViewCellDelegate {
             termType == Term.Status.inProgress ? nil : getInProgressTerm(tableView: tableView),
             termType == Term.Status.snoozed ? nil : getInSnoozeTerm(tableView: tableView),
             termType == Term.Status.mastered ? nil : createMasterTermAction(tableView: tableView),
-            ].compactMap { $0 }
+        ].compactMap { $0 }
     }
     
     // MARK: Private
