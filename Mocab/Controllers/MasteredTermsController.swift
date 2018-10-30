@@ -40,24 +40,3 @@ extension MasteredTermsController: UITableViewDataSource {
         return cell
     }
 }
-
-extension MasteredTermsController: SwipeTableViewCellDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let snoozeTerm = SwipeAction(style: .default, title: "Relearn") { action, indexPath in
-            guard let cell = tableView.cellForRow(at: indexPath) as? ExistingTermCell,
-                var term = cell.term
-                else {
-                    return
-            }
-            
-            term.status = Term.Status.inProgress
-            ServiceInjector.termsService.save(term)
-            
-            tableView.reloadData()
-        }
-        
-        return [snoozeTerm]
-    }
-}
