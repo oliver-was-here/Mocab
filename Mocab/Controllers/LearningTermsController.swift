@@ -2,9 +2,24 @@ import UIKit
 
 class LearningTermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
+    @IBOutlet weak var screenTitle: UILabel!
     
+    private static let INIT_STATUS = Term.Status.inProgress
+    private var statusType: Term.Status = LearningTermsController.INIT_STATUS {
+        didSet {
+            termsTable.reloadData()
+            swipeDelegate = SwipeTermStatusDelegateFactory(forTermType: statusType)
+            
+            switch(statusType) {
+            case .inProgress: screenTitle?.text = "in progress"
+            case .mastered: screenTitle?.text = "mastered"
+            case .snoozed: screenTitle?.text = "snoozed"
+            }
+        }
+    }
+    private var swipeDelegate = SwipeTermStatusDelegateFactory(forTermType: LearningTermsController.INIT_STATUS)
     private var learningTerms: [TermModelView] {
-        let terms = TermModelViewImplFactory.getViewModels(for: Term.Status.inProgress)
+        let terms = TermModelViewImplFactory.getViewModels(for: statusType)
         
         terms.forEach {
             $0.statusUpdated = {
@@ -13,7 +28,6 @@ class LearningTermsController: UIViewController {
         }
         return terms
     }
-    private let swipeDelegate = SwipeTermStatusDelegateFactory.init(forTermType: Term.Status.inProgress)
     private let tableDelegate = TermTableViewDelegate()
     
     override func viewDidLoad() {
@@ -22,6 +36,18 @@ class LearningTermsController: UIViewController {
         ExistingTermCell.register(tableView: termsTable)
         termsTable.delegate = tableDelegate
         termsTable.dataSource = self
+    }
+    
+    @IBAction func snoozedTapped(_ sender: Any) {
+        self.statusType = Term.Status.snoozed
+    }
+    
+    @IBAction func masteredTapped(_ sender: Any) {
+        self.statusType = Term.Status.mastered
+    }
+    
+    @IBAction func inProgressTapped(_ sender: Any) {
+        self.statusType = Term.Status.inProgress
     }
 }
 
@@ -32,11 +58,15 @@ extension LearningTermsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return learningTerms.count + 1
+        switch(statusType) {
+        case .inProgress: return learningTerms.count + 1
+        default: return learningTerms.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isInputCell: Bool = indexPath.row > learningTerms.count - 1
+        let isInputCell: Bool = (statusType == Term.Status.inProgress) && (indexPath.row > learningTerms.count - 1)
         return isInputCell
             ? createNewTermCell(forTable: tableView)
             : createTermCell(term: getTerm(at: indexPath), tableView)
