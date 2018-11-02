@@ -11,7 +11,6 @@ class TermTableViewDelegate: NSObject, UITableViewDelegate {
             existingTerm.modelView?.deselectedTerm(at: indexPath)
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let existingTerm = tableView.cellForRow(at: indexPath) as? ExistingTermCell
             else {

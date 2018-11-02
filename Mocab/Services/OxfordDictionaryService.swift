@@ -20,17 +20,17 @@ class OxfordDictionaryService: TermDefiner {
         "Accept": "application/json"
     ]
     
-    static func getDefinitions(forWord word: String) -> Promise<[String]> {
-        let normalizedWord = word
+    static func getDefinitions(forTerm term: String) -> Promise<[String]> {
+        let normalizedTerm = term
             .lowercased()
             .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     
-        if !validWord(word: normalizedWord) {
+        if !validTerm(term: normalizedTerm) {
             return Promise.value([])
         }
         
         return firstly {
-            requestDefinition(forRoot: normalizedWord)
+            requestDefinition(forRoot: normalizedTerm)
         }.map { response in
             getDefinitions(fromResponse: response)
         }
@@ -38,15 +38,15 @@ class OxfordDictionaryService: TermDefiner {
     
     // MARK: Private
     
-    static private func validWord(word: String) -> Bool {
-        if word.split(separator: " ").count > 1 {
+    static private func validTerm(term: String) -> Bool {
+        if term.split(separator: " ").count > 1 {
             return false
         }
         
         let checker = UITextChecker()
-        let range = NSRange(location: 0, length: word.utf16.count)
+        let range = NSRange(location: 0, length: term.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(
-            in: word,
+            in: term,
             range: range,
             startingAt: 0,
             wrap: false,
@@ -56,8 +56,8 @@ class OxfordDictionaryService: TermDefiner {
         return misspelledRange.location == NSNotFound
     }
     
-    private static func requestDefinition(forRoot word: String) -> Promise<DefinitionResponse> {
-        let url = createEntriesURL(word: word)
+    private static func requestDefinition(forRoot term: String) -> Promise<DefinitionResponse> {
+        let url = createEntriesURL(term: term)
         return Alamofire               // todo see about custom .validate()
             .request(url, headers: headers)
             .responseDecodable(DefinitionResponse.self)
@@ -77,15 +77,15 @@ class OxfordDictionaryService: TermDefiner {
         }
     }
 
-    private static func createInflectionsURL(word: String, language: Language = .en) -> URL {
+    private static func createInflectionsURL(term: String, language: Language = .en) -> URL {
         return inflectionsEndpoint
             .appendingPathComponent("\(language)")
-            .appendingPathComponent(word)
+            .appendingPathComponent(term)
     }
     
-    private static func createEntriesURL(word: String, language: Language = .en) -> URL {
+    private static func createEntriesURL(term: String, language: Language = .en) -> URL {
         return definitionsEndpoint
             .appendingPathComponent("\(language)")
-            .appendingPathComponent(word)
+            .appendingPathComponent(term)
     }
 }

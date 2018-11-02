@@ -9,9 +9,9 @@ struct InflectionResult: Codable {
 }
 
 struct InflectionLexicalEntry: Codable {
-    let inflectionOf: [InflectionWord]
+    let inflectionOf: [InflectionTerm]
 }
 
-struct InflectionWord: Codable {
+struct InflectionTerm: Codable {
     let id: String
 }

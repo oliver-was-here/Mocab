@@ -97,12 +97,12 @@ extension TermsController: UITableViewDataSource {
     }
     
     private func createNewTermCell(forTable tableView: UITableView) -> UITableViewCell {
-        guard let inputCell = tableView.dequeueReusableCell(withIdentifier: NewWordCell.ID) as? NewWordCell
+        guard let inputCell = tableView.dequeueReusableCell(withIdentifier: NewTermCell.ID) as? NewTermCell
             else {
                 return UITableViewCell()
             }
         
-        inputCell.newWord.delegate = self
+        inputCell.newTerm.delegate = self
         return inputCell
     }
 }
@@ -114,13 +114,13 @@ extension TermsController: UITextFieldDelegate {
             else { return }
         
         ServiceInjector.definer
-            .getDefinitions(forWord: receivedTerm)
+            .getDefinitions(forTerm: receivedTerm)
             .done { definitions in
                 try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
                 textField.text = nil
                 self.termsTable.reloadData()
             }.catch { error in
-                let alert: UIAlertController = AlertProvider.errorAlert(message: "We were unable to find a definition for that word.")
+                let alert: UIAlertController = AlertProvider.errorAlert(message: "We were unable to find a definition for that term.")
                 self.present(alert, animated: true)
                 print("ERROR: Unable to get definitions: \(error)")
             }

@@ -4,7 +4,7 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    static private let CURRENT_WORD_KEY = "wordInProgress"
+    static private let CURRENT_TERM_KEY = "termInProgress"
     private var center: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
     }
@@ -21,20 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        configureWordNotifications()
+        configureTermNotifications()
     }
 }
 
 extension AppDelegate {
     // MARK: Private
-    private func configureWordNotifications() {
+    private func configureTermNotifications() {
         clearOldNotifications()
         
         createNewNotifications()
     }
     
     private func clearOldNotifications() {
-        center.removePendingNotificationRequests(withIdentifiers: [AppDelegate.CURRENT_WORD_KEY])
+        center.removePendingNotificationRequests(withIdentifiers: [AppDelegate.CURRENT_TERM_KEY])
     }
     
     private func createNewNotifications() {
@@ -45,7 +45,7 @@ extension AppDelegate {
             
             let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
             let request = UNNotificationRequest(
-                identifier: AppDelegate.CURRENT_WORD_KEY,
+                identifier: AppDelegate.CURRENT_TERM_KEY,
                 content: notification,
                 trigger: notificationTrigger
             )

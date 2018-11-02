@@ -24,7 +24,7 @@
 		1385266821531D2F0024F099 /* TermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266721531D2F0024F099 /* TermService.swift */; };
 		1385266A2153210D0024F099 /* UserDefaultsTermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138526692153210D0024F099 /* UserDefaultsTermService.swift */; };
 		1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266B2153224E0024F099 /* ServiceInjector.swift */; };
-		1385266F215341660024F099 /* NewWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewWordCell.swift */; };
+		1385266F215341660024F099 /* NewTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewTermCell.swift */; };
 		13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */; };
 		13AE78C0217D33CC002B440C /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78BF217D33CC002B440C /* AlertProvider.swift */; };
 		13C8DA092152027900B3FA5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA082152027900B3FA5D /* Alamofire.framework */; };
@@ -101,7 +101,7 @@
 		1385266721531D2F0024F099 /* TermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermService.swift; sourceTree = "<group>"; };
 		138526692153210D0024F099 /* UserDefaultsTermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTermService.swift; sourceTree = "<group>"; };
 		1385266B2153224E0024F099 /* ServiceInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjector.swift; sourceTree = "<group>"; };
-		1385266E215341660024F099 /* NewWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordCell.swift; sourceTree = "<group>"; };
+		1385266E215341660024F099 /* NewTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermCell.swift; sourceTree = "<group>"; };
 		13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTermStatusDelegate.swift; sourceTree = "<group>"; };
 		13AE78BF217D33CC002B440C /* AlertProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProvider.swift; sourceTree = "<group>"; };
 		13C8DA082152027900B3FA5D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		1385266D21533F910024F099 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1385266E215341660024F099 /* NewWordCell.swift */,
+				1385266E215341660024F099 /* NewTermCell.swift */,
 				135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */,
 			);
 			path = Views;
@@ -442,7 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */,
-				1385266F215341660024F099 /* NewWordCell.swift in Sources */,
+				1385266F215341660024F099 /* NewTermCell.swift in Sources */,
 				1334C6FD2150BEEE002B17E6 /* JSONMapper.swift in Sources */,
 				13D8F6D12152180E003F573C /* TermDefiner.swift in Sources */,
 				135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */,
