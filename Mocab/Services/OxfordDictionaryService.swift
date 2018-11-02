@@ -21,7 +21,9 @@ class OxfordDictionaryService: TermDefiner {
     ]
     
     static func getDefinitions(forWord word: String) -> Promise<[String]> {
-        let normalizedWord = word.lowercased()
+        let normalizedWord = word
+            .lowercased()
+            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     
         if !validWord(word: normalizedWord) {
             return Promise.value([])
