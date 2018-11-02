@@ -29,7 +29,7 @@ class UserDefaultsTermService: TermService {
     }
     
     static func save(_ newTerm: Term) {
-        let terms = [newTerm] + getAll().filter { $0.id != newTerm.id }
+        let terms = getAll().filter { $0.id != newTerm.id } + [newTerm]
         
         save(terms: terms)
     }
