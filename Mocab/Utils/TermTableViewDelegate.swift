@@ -6,17 +6,19 @@ class TermTableViewDelegate: NSObject, UITableViewDelegate {
         guard let existingTerm = tableView.cellForRow(at: indexPath) as? ExistingTermCell
             else {
                 return
-        }
-        
-        existingTerm.collapseDescription()
+            }
+
+            existingTerm.modelView?.deselectedTerm(at: indexPath)
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let existingTerm = tableView.cellForRow(at: indexPath) as? ExistingTermCell
             else {
                 return
-        }
+            }
         
-        existingTerm.expandDescription()
+        existingTerm.modelView?.selectedTerm(at: indexPath)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
     }
 }

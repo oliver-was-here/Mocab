@@ -1,19 +1,15 @@
 import Foundation
 
 class TermModelViewImpl: TermModelView {
-    static let COLLAPSED_LINE_LIMIT = 3
+    static let COLLAPSED_LINE_LIMIT = 1
     static let EXPANDED_LINE_LIMIT = Int.max
     
     private var termEntity: Term
     
-    var numLines = COLLAPSED_LINE_LIMIT {
-        didSet {
-            self.numLinesUpdated?(self)
-        }
-    }
+    var numLines = COLLAPSED_LINE_LIMIT
     
     var statusUpdated: (() -> Void)?
-    var numLinesUpdated: ((TermModelView) -> ())?
+    var numLinesUpdated: ((TermModelView, IndexPath) -> ())?
     
     required init(term: Term) {
         self.termEntity = term
@@ -30,11 +26,16 @@ class TermModelViewImpl: TermModelView {
         statusUpdated?()
     }
     
-    func selectedTerm() {
-        self.numLines = TermModelViewImpl.COLLAPSED_LINE_LIMIT
+    func selectedTerm(at indexPath: IndexPath) {
+        updateNumLines(newVal: TermModelViewImpl.EXPANDED_LINE_LIMIT, at: indexPath)
     }
     
-    func deselectedTerm() {
-        self.numLines = TermModelViewImpl.EXPANDED_LINE_LIMIT
+    func deselectedTerm(at indexPath: IndexPath) {
+        updateNumLines(newVal: TermModelViewImpl.COLLAPSED_LINE_LIMIT, at: indexPath)
+    }
+    
+    private func updateNumLines(newVal: Int, at indexPath: IndexPath) {
+        self.numLines = newVal
+        self.numLinesUpdated?(self, indexPath)
     }
 }

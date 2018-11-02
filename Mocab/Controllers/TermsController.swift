@@ -25,6 +25,15 @@ class TermsController: UIViewController {
             $0.statusUpdated = {
                 self.termsTable.reloadData()
             }
+            $0.numLinesUpdated = {[unowned self] viewModel, indexPath in
+                guard let existingTerm = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell
+                    else {
+                        return
+                    }
+                
+                existingTerm.detailTextLabel?.numberOfLines = viewModel.numLines
+                self.termsTable.reloadData()
+            }
         }
         return terms
     }
