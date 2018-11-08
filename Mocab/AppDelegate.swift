@@ -43,7 +43,7 @@ extension AppDelegate {
             notification.title = inProgressTerm.asEntered
             notification.body = inProgressTerm.definition
             
-            let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
+            let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 60 * 5, repeats: true)
             let request = UNNotificationRequest(
                 identifier: AppDelegate.CURRENT_TERM_KEY,
                 content: notification,
