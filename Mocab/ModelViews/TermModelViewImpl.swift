@@ -2,7 +2,7 @@ import Foundation
 
 class TermModelViewImpl: TermModelView {
     static let COLLAPSED_LINE_LIMIT = 1
-    static let EXPANDED_LINE_LIMIT = Int.max
+    static let EXPANDED_LINE_LIMIT = 0
     
     private var termEntity: Term
     

@@ -7,7 +7,9 @@ class TermsController: UIViewController {
     private static let INIT_STATUS = Term.Status.inProgress
     private var statusType: Term.Status = TermsController.INIT_STATUS {
         didSet {
+            self.learningTerms = initModelViews(for: statusType)
             termsTable.reloadData()
+
             swipeDelegate = SwipeTermStatusDelegate(forTermType: statusType)
             
             switch(statusType) {
@@ -18,25 +20,8 @@ class TermsController: UIViewController {
         }
     }
     private var swipeDelegate = SwipeTermStatusDelegate(forTermType: TermsController.INIT_STATUS)
-    private var learningTerms: [TermModelView] {
-        let terms = TermModelViewImplFactory.getViewModels(for: statusType)
-        
-        terms.forEach {
-            $0.statusUpdated = {
-                self.termsTable.reloadData()
-            }
-            $0.numLinesUpdated = {[unowned self] viewModel, indexPath in
-                guard let existingTerm = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell
-                    else {
-                        return
-                    }
-                
-                existingTerm.detailTextLabel?.numberOfLines = viewModel.numLines
-                self.termsTable.reloadData()
-            }
-        }
-        return terms
-    }
+    private var learningTerms: [TermModelView] = []
+    
     private let tableDelegate = TermTableViewDelegate()
     
     override func viewDidLoad() {
@@ -44,6 +29,8 @@ class TermsController: UIViewController {
         
         termsTable.delegate = tableDelegate
         termsTable.dataSource = self
+        
+        self.learningTerms = initModelViews(for: statusType)
     }
     
     @IBAction func snoozedTapped(_ sender: Any) {
@@ -56,6 +43,28 @@ class TermsController: UIViewController {
     
     @IBAction func inProgressTapped(_ sender: Any) {
         self.statusType = Term.Status.inProgress
+    }
+    
+    private func initModelViews(for statusType: Term.Status) -> [TermModelView] {
+        let terms = TermModelViewImplFactory.getViewModels(for: statusType)
+        
+        terms.forEach {
+            $0.statusUpdated = {
+                // todo probably delete from views here
+                self.termsTable.reloadData()
+            }
+            $0.numLinesUpdated = {[unowned self] viewModel, indexPath in
+                if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
+                    existingRowCell.definitionTextView.textContainer.maximumNumberOfLines = viewModel.numLines
+                    existingRowCell.definitionTextView.invalidateIntrinsicContentSize()
+                    
+                    self.termsTable.beginUpdates()
+                    self.termsTable.endUpdates()
+                }
+            }
+        }
+        
+        return terms
     }
 }
 
