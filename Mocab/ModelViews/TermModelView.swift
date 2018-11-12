@@ -9,6 +9,7 @@ protocol TermModelView: class {
     
     init(term: Term)
     
+    func updateDefinition(newDefinition: String)
     func selectedNewStatus(_ status: Term.Status)
     func selectedTerm(at indexPath: IndexPath)
     func deselectedTerm(at indexPath: IndexPath)

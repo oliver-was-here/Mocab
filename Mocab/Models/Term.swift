@@ -2,7 +2,7 @@ import Foundation
 
 struct Term: Codable {
     let asEntered: String
-    let definition: String // todo list of definitions
+    var definition: String // todo list of definitions
     var status: Status
     
     enum Status: String, Codable {

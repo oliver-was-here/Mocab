@@ -8,6 +8,7 @@ class TermTableViewDelegate: NSObject, UITableViewDelegate {
                 return
             }
 
+            existingTerm.definitionTextView.endEditing(true)
             existingTerm.modelView?.deselectedTerm(at: indexPath)
     }
     

@@ -101,7 +101,7 @@ extension TermsController: UITableViewDataSource {
                 return UITableViewCell()
             }
         
-        cell.configure(modelView: term, delegate: swipeDelegate)
+        cell.configure(modelView: term, swipeDelegate: swipeDelegate, textViewDelegate: self)
         return cell
     }
     
@@ -151,5 +151,44 @@ extension TermsController: UITextFieldDelegate {
             status: Term.Status.inProgress
         )
         ServiceInjector.termsService.save(term)
+    }
+}
+
+// MARK: UITextViewDelegate
+extension TermsController: UITextViewDelegate {
+    private func updateSelection(selectedIndex indexPath: IndexPath) {
+        if let oldSelected = termsTable.indexPathForSelectedRow {
+            tableDelegate.tableView(termsTable, didDeselectRowAt: oldSelected)
+        }
+        tableDelegate.tableView(termsTable, didSelectRowAt: indexPath)
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        guard let rowCell = getExistingTermCell(forTextView: textView),
+            !rowCell.isSelected,
+            let indexPath = termsTable.indexPath(for: rowCell)
+            else { return true }
+        
+        updateSelection(selectedIndex: indexPath)
+        return false
+    }
+    
+    private func getExistingTermCell(forTextView textView: UITextView) -> ExistingTermCell? {
+        return termsTable
+            .visibleCells
+            .first(where: {
+                if let cell = $0 as? ExistingTermCell,
+                    cell.definitionTextView == textView {
+                    return true
+                }
+                
+                return false
+            }) as? ExistingTermCell
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        getExistingTermCell(forTextView: textView)?
+            .modelView?
+            .updateDefinition(newDefinition: textView.text)
     }
 }

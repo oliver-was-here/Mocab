@@ -3,7 +3,7 @@ import Foundation
 class TermModelViewImpl: TermModelView {
     static let COLLAPSED_LINE_LIMIT = 1
     static let EXPANDED_LINE_LIMIT = 0
-    
+    private let termsService = ServiceInjector.termsService
     private var termEntity: Term
     
     var numLines = COLLAPSED_LINE_LIMIT
@@ -21,9 +21,16 @@ class TermModelViewImpl: TermModelView {
     
     func selectedNewStatus(_ status: Term.Status) {
         termEntity.status = status
-        ServiceInjector.termsService.save(termEntity)
+        termsService.save(termEntity)
         
         statusUpdated?()
+    }
+    
+    func updateDefinition(newDefinition: String) {
+        if newDefinition != termEntity.definition {
+            termEntity.definition = newDefinition
+            termsService.save(termEntity)
+        }
     }
     
     func selectedTerm(at indexPath: IndexPath) {
