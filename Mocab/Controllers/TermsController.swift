@@ -134,9 +134,23 @@ extension TermsController: UITextFieldDelegate {
                 textField.text = nil
                 self.reloadTermsTable()
             }.catch { error in
-                let alert: UIAlertController = AlertProvider.errorAlert(message: "We were unable to find a definition for that term.")
+                let alert: UIAlertController = AlertProvider.errorAlert(
+                    title: "Unable to find definition",
+                    message: "Would you like to provide a custom definition?",
+                    actions: [
+                        UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { _ in
+                            textField.text = nil
+                            do {
+                                try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: [""])
+                                self.reloadTermsTable()
+                            } catch {
+                                print("ERROR: Unable to get definitions: \(error)")
+                            }
+                        },
+                        UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil)
+                    ]
+                )
                 self.present(alert, animated: true)
-                print("ERROR: Unable to get definitions: \(error)")
             }
     }
     
