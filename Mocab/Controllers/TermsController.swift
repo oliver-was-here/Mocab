@@ -66,6 +66,11 @@ class TermsController: UIViewController {
         
         return terms
     }
+    
+    func reloadTermsTable() {
+        learningTerms = TermModelViewImplFactory.getViewModels(for: statusType)
+        termsTable.reloadData()
+    }
 }
 
 // MARK: UITableViewDataSource
@@ -127,7 +132,7 @@ extension TermsController: UITextFieldDelegate {
             .done { definitions in
                 try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
                 textField.text = nil
-                self.termsTable.reloadData()
+                self.reloadTermsTable()
             }.catch { error in
                 let alert: UIAlertController = AlertProvider.errorAlert(message: "We were unable to find a definition for that term.")
                 self.present(alert, animated: true)
