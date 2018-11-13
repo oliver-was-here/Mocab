@@ -100,7 +100,7 @@ class TermsController: UIViewController {
         terms.forEach {
             $0.statusUpdated = {
                 // todo probably delete from views here
-                self.termsTable.reloadData()
+                self.reloadTermsTable()
             }
             $0.numLinesUpdated = {[unowned self] viewModel, indexPath in
                 if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
