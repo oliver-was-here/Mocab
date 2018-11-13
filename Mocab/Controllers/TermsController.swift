@@ -79,7 +79,6 @@ class TermsController: UIViewController {
         
         termsTable.insertRows(at: [firstCellIndexPath], with: .automatic)
         if let newCell = termsTable.cellForRow(at: firstCellIndexPath) as? NewTermCell {
-            self.termsTable.scrollToRow(at: firstCellIndexPath, at: UITableView.ScrollPosition.middle, animated: true)
             newCell.newTerm.becomeFirstResponder()
             newCell.newTerm.delegate = self
         }
