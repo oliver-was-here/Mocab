@@ -3,6 +3,9 @@ import UIKit
 class TermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
     @IBOutlet weak var screenTitle: UILabel!
+    @IBOutlet weak var newTermButton: UIButton!
+    
+    private var isAddingNewTerm = false // state variable used to determine view state of ExistingTermCell
     
     private static let INIT_STATUS = Term.Status.inProgress
     private var statusType: Term.Status = TermsController.INIT_STATUS {
@@ -33,6 +36,20 @@ class TermsController: UIViewController {
         self.learningTerms = initModelViews(for: statusType)
     }
     
+    @IBAction func newTermButtonTapped(_ sender: Any) {
+        /*
+         todo look into tidying up architecture
+         
+         logic in method is confused by isAddingNewTerm state variable.
+         used in DataSource to determine cell count. called methods therefore
+         reference the value indirectly. implication being must clean up old
+         state before updating state variable.
+         */
+        let newAddingTermState = !isAddingNewTerm
+        
+        newAddingTermState ? configureAddingTermState() : configureReviewTermsState()
+    }
+    
     @IBAction func snoozedTapped(_ sender: Any) {
         self.statusType = Term.Status.snoozed
     }
@@ -45,6 +62,39 @@ class TermsController: UIViewController {
         self.statusType = Term.Status.inProgress
     }
     
+    func reloadTermsTable() {
+        learningTerms = TermModelViewImplFactory.getViewModels(for: statusType)
+        termsTable.reloadData()
+    }
+    
+    // MARK: Private
+    private func configureAddingTermState() {
+        let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
+        
+        if let oldSelected = termsTable.indexPathForSelectedRow {
+            tableDelegate.tableView(termsTable, didDeselectRowAt: oldSelected)
+        }
+        
+        isAddingNewTerm = true
+        
+        termsTable.insertRows(at: [firstCellIndexPath], with: .automatic)
+        if let newCell = termsTable.cellForRow(at: firstCellIndexPath) as? NewTermCell {
+            self.termsTable.scrollToRow(at: firstCellIndexPath, at: UITableView.ScrollPosition.middle, animated: true)
+            newCell.newTerm.becomeFirstResponder()
+            newCell.newTerm.delegate = self
+        }
+        
+        newTermButton.setTitle("-", for: .normal)
+    }
+    
+    fileprivate func configureReviewTermsState() {
+        let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
+        
+        isAddingNewTerm = false
+        termsTable.deleteRows(at: [firstCellIndexPath], with: .automatic)
+        newTermButton.setTitle("+", for: .normal)
+    }
+    
     private func initModelViews(for statusType: Term.Status) -> [TermModelView] {
         let terms = TermModelViewImplFactory.getViewModels(for: statusType)
         
@@ -55,11 +105,7 @@ class TermsController: UIViewController {
             }
             $0.numLinesUpdated = {[unowned self] viewModel, indexPath in
                 if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
-                    existingRowCell.definitionTextView.textContainer.maximumNumberOfLines = viewModel.numLines
-                    existingRowCell.definitionTextView.invalidateIntrinsicContentSize()
-                    
-                    self.termsTable.beginUpdates()
-                    self.termsTable.endUpdates()
+                    self.updateCellHeight(existingRowCell, viewModel)
                 }
             }
         }
@@ -67,9 +113,12 @@ class TermsController: UIViewController {
         return terms
     }
     
-    func reloadTermsTable() {
-        learningTerms = TermModelViewImplFactory.getViewModels(for: statusType)
-        termsTable.reloadData()
+    private func updateCellHeight(_ existingRowCell: ExistingTermCell, _ viewModel: TermModelView) {
+        existingRowCell.definitionTextView.textContainer.maximumNumberOfLines = viewModel.numLines
+        existingRowCell.definitionTextView.invalidateIntrinsicContentSize()
+        
+        self.termsTable.beginUpdates()
+        self.termsTable.endUpdates()
     }
 }
 
@@ -80,18 +129,15 @@ extension TermsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch(statusType) {
-        case .inProgress: return learningTerms.count + 1
-        default: return learningTerms.count
-        }
-        
+        return isAddingNewTerm ? learningTerms.count + 1 : learningTerms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isInputCell: Bool = (statusType == Term.Status.inProgress) && (indexPath.row > learningTerms.count - 1)
-        return isInputCell
-            ? createNewTermCell(forTable: tableView)
-            : createTermCell(term: getTerm(at: indexPath), tableView)
+        if isAddingNewTerm && IndexPath(row: 0, section: 0) == indexPath {
+            return createNewTermCell(forTable: termsTable)
+        } else {
+            return createTermCell(term: getTerm(at: indexPath), tableView)
+        }
     }
     
     // Mark: Private
@@ -124,34 +170,22 @@ extension TermsController: UITableViewDataSource {
 // MARK: UITextFieldDelegate
 extension TermsController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let receivedTerm = textField.text
-            else { return }
-        
-        ServiceInjector.definer
-            .getDefinitions(forTerm: receivedTerm)
-            .done { definitions in
-                try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
-                textField.text = nil
-                self.reloadTermsTable()
-            }.catch { error in
-                let alert: UIAlertController = AlertProvider.errorAlert(
-                    title: "Unable to find definition",
-                    message: "Would you like to provide a custom definition?",
-                    actions: [
-                        UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { _ in
-                            textField.text = nil
-                            do {
-                                try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: [""])
-                                self.reloadTermsTable()
-                            } catch {
-                                print("ERROR: Unable to get definitions: \(error)")
-                            }
-                        },
-                        UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil)
-                    ]
-                )
-                self.present(alert, animated: true)
-            }
+        if isAddingNewTerm {
+            configureReviewTermsState()
+            
+            guard let receivedTerm = textField.text
+                else { return }
+            
+            ServiceInjector.definer
+                .getDefinitions(forTerm: receivedTerm)
+                .done { definitions in
+                    try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
+                    textField.text = nil
+                    self.reloadTermsTable()
+                }.catch { error in
+                    self.handleNoDefinition(textField: textField)
+                }
+        }
     }
     
     // MARK: Private
@@ -170,6 +204,39 @@ extension TermsController: UITextFieldDelegate {
             status: Term.Status.inProgress
         )
         ServiceInjector.termsService.save(term)
+    }
+    
+    private func handleNoDefinition(textField: UITextField) {
+        let alert: UIAlertController = AlertProvider.errorAlert(
+            title: "Unable to find definition",
+            message: "Would you like to provide a custom definition?",
+            actions: [
+                UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { _ in
+                    guard let receivedTerm = textField.text else { return }
+                    textField.text = nil
+                    do {
+                        try self.requestCustomDefinition(receivedTerm)
+                    } catch {
+                        print("ERROR: Unable to get definitions: \(error)")
+                    }
+                },
+                UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil)
+            ]
+        )
+        self.present(alert, animated: true)
+    }
+    
+    private func requestCustomDefinition(_ receivedTerm: String) throws {
+        try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: [""])
+        self.reloadTermsTable()
+        
+        let termsSection = self.termsTable.numberOfSections - 1
+        let lastRow = self.termsTable.numberOfRows(inSection: termsSection) - 1
+        let indexPath: IndexPath = IndexPath(row: lastRow, section: termsSection)
+        self.termsTable.scrollToRow(at: indexPath, at: .top, animated: true)
+        if let cell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
+            cell.definitionTextView.becomeFirstResponder()
+        }
     }
 }
 

@@ -9,6 +9,7 @@ class TermTableViewDelegate: NSObject, UITableViewDelegate {
             }
 
             existingTerm.definitionTextView.endEditing(true)
+            existingTerm.isSelected = false
             existingTerm.modelView?.deselectedTerm(at: indexPath)
     }
     

@@ -70,7 +70,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="what would you like to know?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipy-Wx-4EH" userLabel="New term">
+                                                <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="what would you like to know?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipy-Wx-4EH" userLabel="New term">
                                                     <rect key="frame" x="0.0" y="6.5" width="343" height="30.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -132,6 +132,16 @@
                                     <constraint firstItem="2uw-vI-3NJ" firstAttribute="width" secondItem="VmC-1f-58K" secondAttribute="width" id="ret-sR-gkC"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXF-F5-78k">
+                                <rect key="frame" x="329" y="12" width="30" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="newTermButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="biW-WC-bpi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -139,8 +149,10 @@
                             <constraint firstItem="Yya-FZ-NY2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3KK-Kb-Xrk"/>
                             <constraint firstItem="VmC-1f-58K" firstAttribute="top" secondItem="Yya-FZ-NY2" secondAttribute="bottom" id="FZc-c8-dCv"/>
                             <constraint firstItem="aoC-xd-6yG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="HSx-eZ-7cd"/>
+                            <constraint firstItem="SXF-F5-78k" firstAttribute="centerY" secondItem="aoC-xd-6yG" secondAttribute="centerY" id="K6z-fw-iR9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aoC-xd-6yG" secondAttribute="trailing" constant="234" id="KtY-7g-60M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VmC-1f-58K" secondAttribute="bottom" id="PkB-5r-sqC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SXF-F5-78k" secondAttribute="trailing" constant="16" id="TXb-nl-Eyz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VmC-1f-58K" secondAttribute="trailing" id="WRn-Qo-jDk"/>
                             <constraint firstItem="Yya-FZ-NY2" firstAttribute="top" secondItem="aoC-xd-6yG" secondAttribute="bottom" constant="8" id="gIo-Yh-Up3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Yya-FZ-NY2" secondAttribute="trailing" constant="16" id="k4f-E2-40s"/>
@@ -149,6 +161,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="newTermButton" destination="SXF-F5-78k" id="CvO-Wi-P57"/>
                         <outlet property="screenTitle" destination="aoC-xd-6yG" id="f0U-0J-ZbQ"/>
                         <outlet property="termsTable" destination="Yya-FZ-NY2" id="9wr-xu-Vug"/>
                     </connections>
