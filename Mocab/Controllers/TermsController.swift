@@ -63,7 +63,7 @@ class TermsController: UIViewController {
     }
     
     func reloadTermsTable() {
-        learningTerms = TermModelViewImplFactory.getViewModels(for: statusType)
+        learningTerms = initModelViews(for: statusType)
         termsTable.reloadData()
     }
     
