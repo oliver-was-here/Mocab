@@ -42,6 +42,8 @@ class TermModelViewImpl: TermModelView {
     }
     
     private func updateNumLines(newVal: Int, at indexPath: IndexPath) {
+        if self.numLines == newVal { return }
+        
         self.numLines = newVal
         self.numLinesUpdated?(self, indexPath)
     }
