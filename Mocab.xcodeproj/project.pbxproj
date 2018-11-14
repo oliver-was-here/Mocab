@@ -40,6 +40,8 @@
 		13D8F6CF2152179C003F573C /* InflectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8F6CE2152179C003F573C /* InflectionResponse.swift */; };
 		13D8F6D12152180E003F573C /* TermDefiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8F6D02152180E003F573C /* TermDefiner.swift */; };
 		13D8F6D321521844003F573C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8F6D221521844003F573C /* Language.swift */; };
+		13F1D917219BCE9500E145CC /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D916219BCE9500E145CC /* UITextView.swift */; };
+		13F1D919219BCF3E00E145CC /* KeyboardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D918219BCF3E00E145CC /* KeyboardHelpers.swift */; };
 		13FEB5712188074000F0E3A9 /* TermModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5702188074000F0E3A9 /* TermModelView.swift */; };
 		13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */; };
 		13FEB5752188077500F0E3A9 /* TermModelViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */; };
@@ -114,6 +116,8 @@
 		13D8F6CE2152179C003F573C /* InflectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflectionResponse.swift; sourceTree = "<group>"; };
 		13D8F6D02152180E003F573C /* TermDefiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDefiner.swift; sourceTree = "<group>"; };
 		13D8F6D221521844003F573C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		13F1D916219BCE9500E145CC /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		13F1D918219BCF3E00E145CC /* KeyboardHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelpers.swift; sourceTree = "<group>"; };
 		13FEB5702188074000F0E3A9 /* TermModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelView.swift; sourceTree = "<group>"; };
 		13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelViewImpl.swift; sourceTree = "<group>"; };
 		13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelViewFactory.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				13CC14C1217EB6B300091468 /* TermTableViewDelegate.swift */,
 				1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */,
 				13D8F6D221521844003F573C /* Language.swift */,
+				13F1D918219BCF3E00E145CC /* KeyboardHelpers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				13CCAD8521534F9C004534F5 /* UITextField.swift */,
+				13F1D916219BCE9500E145CC /* UITextView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				13D8F6D321521844003F573C /* Language.swift in Sources */,
 				13FEB5752188077500F0E3A9 /* TermModelViewFactory.swift in Sources */,
 				1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */,
+				13F1D919219BCF3E00E145CC /* KeyboardHelpers.swift in Sources */,
 				13AE78C0217D33CC002B440C /* AlertProvider.swift in Sources */,
 				13CC14C2217EB6B300091468 /* TermTableViewDelegate.swift in Sources */,
 				1385266821531D2F0024F099 /* TermService.swift in Sources */,
@@ -463,6 +470,7 @@
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
 				13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */,
 				1385266A2153210D0024F099 /* UserDefaultsTermService.swift in Sources */,
+				13F1D917219BCE9500E145CC /* UITextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

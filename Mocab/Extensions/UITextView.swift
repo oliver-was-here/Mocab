@@ -1,9 +1,9 @@
 import Foundation
 import UIKit
 
-extension UITextField {
+extension UITextView {
     /*
-     note: any changes made may also need to be replicated in UITedxtField extension
+     note: any changes made may also need to be replicated in UITedtView extension
      */
     @IBInspectable var doneAccessory: Bool {
         get {
