@@ -28,8 +28,16 @@ class UserDefaultsTermService: TermService {
         })
     }
     
-    static func save(_ newTerm: Term) {
-        let terms = getAll().filter { $0.id != newTerm.id } + [newTerm]
+    static func save(_ newTerm: Term, retainOrder: Bool) {
+        let currTerms = getAll()
+        let terms: [Term]
+        if retainOrder {
+            terms = currTerms.map {
+                $0.id == newTerm.id ? newTerm : $0
+            }
+        } else {
+            terms = getAll().filter { $0.id != newTerm.id } + [newTerm]
+        }
         
         save(terms: terms)
     }

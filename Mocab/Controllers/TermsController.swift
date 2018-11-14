@@ -202,7 +202,7 @@ extension TermsController: UITextFieldDelegate {
             definition: definition,
             status: Term.Status.inProgress
         )
-        ServiceInjector.termsService.save(term)
+        ServiceInjector.termsService.save(term, retainOrder: false)
     }
     
     private func handleNoDefinition(textField: UITextField) {
