@@ -62,12 +62,12 @@ class TermsController: UIViewController {
         self.statusType = Term.Status.inProgress
     }
     
-    func reloadTermsTable() {
+    // MARK: Private
+    private func reloadTermsTable() {
         learningTerms = initModelViews(for: statusType)
         termsTable.reloadData()
     }
     
-    // MARK: Private
     private func configureAddingTermState() {
         let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
         
