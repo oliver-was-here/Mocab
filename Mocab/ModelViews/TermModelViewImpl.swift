@@ -8,11 +8,17 @@ class TermModelViewImpl: TermModelView {
     
     var numLines = COLLAPSED_LINE_LIMIT
     
-    var statusUpdated: (() -> Void)?
-    var numLinesUpdated: ((TermModelView, IndexPath) -> ())?
+    private let statusUpdated: (() -> Void)
+    private let numLinesUpdated: ((TermModelView, IndexPath) -> ())
     
-    required init(term: Term) {
+    required init(
+        term: Term,
+        statusUpdated: @escaping () -> (),
+        numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
+    ) {
         self.termEntity = term
+        self.statusUpdated = statusUpdated
+        self.numLinesUpdated = numLinesUpdated
     }
     
     var definition: String { return termEntity.definition }
@@ -23,7 +29,7 @@ class TermModelViewImpl: TermModelView {
         termEntity.status = status
         termsService.save(termEntity, retainOrder: false)
         
-        statusUpdated?()
+        statusUpdated()
     }
     
     func updateDefinition(newDefinition: String) {
@@ -45,6 +51,6 @@ class TermModelViewImpl: TermModelView {
         if self.numLines == newVal { return }
         
         self.numLines = newVal
-        self.numLinesUpdated?(self, indexPath)
+        self.numLinesUpdated(self, indexPath)
     }
 }

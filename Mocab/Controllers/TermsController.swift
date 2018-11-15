@@ -95,19 +95,16 @@ class TermsController: UIViewController {
     }
     
     private func initModelViews(for statusType: Term.Status) -> [TermModelView] {
-        let terms = TermModelViewImplFactory.getViewModels(for: statusType)
-        
-        terms.forEach {
-            $0.statusUpdated = {
-                // todo probably delete from views here
-                self.reloadTermsTable()
-            }
-            $0.numLinesUpdated = {[unowned self] viewModel, indexPath in
+        let terms = TermModelViewImplFactory.getViewModels(
+            for: statusType,
+            statusUpdated: { self.reloadTermsTable() },
+            numLinesUpdated: {[unowned self] viewModel, indexPath in
                 if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
                     self.updateCellHeight(existingRowCell, viewModel)
                 }
             }
-        }
+        )
+
         
         return terms
     }
