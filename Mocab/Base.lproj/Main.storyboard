@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoC-xd-6yG" userLabel="In progress">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="terms status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoC-xd-6yG" userLabel="In progress">
                                 <rect key="frame" x="16" y="20" width="125" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
@@ -106,21 +106,21 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="128"/>
                                                 <state key="normal" title="snoozed"/>
                                                 <connections>
-                                                    <action selector="snoozedTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2H3-to-ABj"/>
+                                                    <action selector="snoozedTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A5k-4y-iuk"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGG-3X-osj">
                                                 <rect key="frame" x="125" y="0.0" width="125" height="128"/>
                                                 <state key="normal" title="mastered"/>
                                                 <connections>
-                                                    <action selector="masteredTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5hM-iQ-g0P"/>
+                                                    <action selector="masteredTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2GF-EW-AOR"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjW-N4-DVs">
                                                 <rect key="frame" x="250" y="0.0" width="125" height="128"/>
                                                 <state key="normal" title="in prog"/>
                                                 <connections>
-                                                    <action selector="inProgressTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xnv-N1-ACG"/>
+                                                    <action selector="inProgressTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9dA-51-fh0"/>
                                                 </connections>
                                             </button>
                                         </subviews>

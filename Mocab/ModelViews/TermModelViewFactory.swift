@@ -1,5 +1,6 @@
 import Foundation
 
+// todo move probably
 class TermModelViewImplFactory {
     static func getViewModels(
         for status: Term.Status,

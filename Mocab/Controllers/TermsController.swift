@@ -7,33 +7,39 @@ class TermsController: UIViewController {
     
     private var isAddingNewTerm = false // state variable used to determine view state of ExistingTermCell
     
-    private static let INIT_STATUS = Term.Status.inProgress
-    private var statusType: Term.Status = TermsController.INIT_STATUS {
-        didSet {
-            self.learningTerms = initModelViews(for: statusType)
-            termsTable.reloadData()
-
-            swipeDelegate = SwipeTermStatusDelegate(forTermType: statusType)
-            
-            switch(statusType) {
-            case .inProgress: screenTitle?.text = "in progress"
-            case .mastered: screenTitle?.text = "mastered"
-            case .snoozed: screenTitle?.text = "snoozed"
-            }
-        }
+    private var swipeDelegate = SwipeTermStatusDelegate(forTermType: .inProgress)
+    private var terms: [TermModelView] {
+        return reviewTermsViewModel?.displayedTerms ?? []
     }
-    private var swipeDelegate = SwipeTermStatusDelegate(forTermType: TermsController.INIT_STATUS)
-    private var learningTerms: [TermModelView] = []
     
     private let tableDelegate = TermTableViewDelegate()
+    
+    private var reviewTermsViewModel: ReviewTermsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        reviewTermsViewModel = ReviewTermsViewModelImpl(
+            updatedStatusDisplayed: { newStatus in
+                // todo see about performing the swipe delegate on a per-cell basis (e.g. conflating this with the statusUpdated item. called per cell not for entire table)
+                self.swipeDelegate = SwipeTermStatusDelegate(forTermType: newStatus)
+            },
+            updatedDisplayedTerms: { newTerms in
+                self.termsTable.reloadData()
+            },
+            didUpdateScreenTitle: { newTitle in
+                self.screenTitle.text = newTitle
+            },
+            statusUpdated: { self.termsTable.reloadData() },
+            numLinesUpdated: {[unowned self] viewModel, indexPath in
+                if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
+                    self.updateCellHeight(existingRowCell, viewModel)
+                }
+            }
+        )
+        
         termsTable.delegate = tableDelegate
         termsTable.dataSource = self
-        
-        self.learningTerms = initModelViews(for: statusType)
     }
     
     @IBAction func newTermButtonTapped(_ sender: Any) {
@@ -51,21 +57,20 @@ class TermsController: UIViewController {
     }
     
     @IBAction func snoozedTapped(_ sender: Any) {
-        self.statusType = Term.Status.snoozed
+        bindChangeStatusTapped(forStatus: .snoozed)
     }
     
     @IBAction func masteredTapped(_ sender: Any) {
-        self.statusType = Term.Status.mastered
+        bindChangeStatusTapped(forStatus: .mastered)
     }
     
     @IBAction func inProgressTapped(_ sender: Any) {
-        self.statusType = Term.Status.inProgress
+        bindChangeStatusTapped(forStatus: .inProgress)
     }
     
     // MARK: Private
-    private func reloadTermsTable() {
-        learningTerms = initModelViews(for: statusType)
-        termsTable.reloadData()
+    private func bindChangeStatusTapped(forStatus status: Term.Status) {
+        reviewTermsViewModel?.updateDisplayedTerms(to: status)
     }
     
     private func configureAddingTermState() {
@@ -86,27 +91,12 @@ class TermsController: UIViewController {
         newTermButton.setTitle("-", for: .normal)
     }
     
-    fileprivate func configureReviewTermsState() {
+    private func configureReviewTermsState() {
         let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
         
         isAddingNewTerm = false
         termsTable.deleteRows(at: [firstCellIndexPath], with: .automatic)
         newTermButton.setTitle("+", for: .normal)
-    }
-    
-    private func initModelViews(for statusType: Term.Status) -> [TermModelView] {
-        let terms = TermModelViewImplFactory.getViewModels(
-            for: statusType,
-            statusUpdated: { self.reloadTermsTable() },
-            numLinesUpdated: {[unowned self] viewModel, indexPath in
-                if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
-                    self.updateCellHeight(existingRowCell, viewModel)
-                }
-            }
-        )
-
-        
-        return terms
     }
     
     private func updateCellHeight(_ existingRowCell: ExistingTermCell, _ viewModel: TermModelView) {
@@ -125,7 +115,7 @@ extension TermsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isAddingNewTerm ? learningTerms.count + 1 : learningTerms.count
+        return isAddingNewTerm ? terms.count + 1 : terms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -138,8 +128,8 @@ extension TermsController: UITableViewDataSource {
     
     // Mark: Private
     
-    fileprivate func getTerm(at indexPath: IndexPath) -> TermModelView {
-        return learningTerms[indexPath.row]
+    private func getTerm(at indexPath: IndexPath) -> TermModelView {
+        return terms[indexPath.row]
     }
     
     private func createTermCell(term: TermModelView, _ tableView: UITableView) -> UITableViewCell {
@@ -171,45 +161,26 @@ extension TermsController: UITextFieldDelegate {
             
             guard let receivedTerm = textField.text
                 else { return }
+            textField.text = nil
             
-            ServiceInjector.definer
-                .getDefinitions(forTerm: receivedTerm)
-                .done { definitions in
-                    try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
-                    textField.text = nil
-                    self.reloadTermsTable()
+            reviewTermsViewModel?
+                .addTerm(receivedTerm)
+                .done { _ in
+                    self.isAddingNewTerm = false
+                    self.termsTable.reloadData()
                 }.catch { error in
-                    self.handleNoDefinition(textField: textField)
+                    self.handleNoDefinition(receivedTerm: receivedTerm)
                 }
         }
     }
     
-    // MARK: Private
-    
-    static private func saveTerm(
-        forTerm receivedTerm: String,
-        andDefinitions definitions: [String]) throws
-    {
-        guard let definition = definitions.first
-            else {
-                throw UnexpectedPayloadError(message: "empty definition list")
-            }
-        let term = Term(
-            asEntered: receivedTerm,
-            definition: definition,
-            status: Term.Status.inProgress
-        )
-        ServiceInjector.termsService.save(term, retainOrder: false)
-    }
-    
-    private func handleNoDefinition(textField: UITextField) {
+    // MARK: private
+    private func handleNoDefinition(receivedTerm: String) {
         let alert: UIAlertController = AlertProvider.errorAlert(
             title: "Unable to find definition",
             message: "Would you like to provide a custom definition?",
             actions: [
                 UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { _ in
-                    guard let receivedTerm = textField.text else { return }
-                    textField.text = nil
                     do {
                         try self.requestCustomDefinition(receivedTerm)
                     } catch {
@@ -223,15 +194,16 @@ extension TermsController: UITextFieldDelegate {
     }
     
     private func requestCustomDefinition(_ receivedTerm: String) throws {
-        try TermsController.saveTerm(forTerm: receivedTerm, andDefinitions: [""])
-        self.reloadTermsTable()
+        reviewTermsViewModel?.addTerm(receivedTerm, "")
+        termsTable.reloadData()
         
+        // todo this logic assumes addTerm adds the cell to end of list. a "request definition" w/ IndexPath binding would be more sensible
         let termsSection = self.termsTable.numberOfSections - 1
         let lastRow = self.termsTable.numberOfRows(inSection: termsSection) - 1
         let indexPath: IndexPath = IndexPath(row: lastRow, section: termsSection)
         self.termsTable.scrollToRow(at: indexPath, at: .top, animated: true)
         if let cell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
-            cell.definitionTextView.becomeFirstResponder()
+            cell.definitionTextView.becomeFirstResponder() // todo broken, does not open keyboard. looking at moving this to popover so putting off the fix for now
         }
     }
 }
