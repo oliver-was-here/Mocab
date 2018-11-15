@@ -28,7 +28,7 @@
                                 <rect key="frame" x="16" y="59.5" width="343" height="479.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EXISTING_TERM" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EXISTING_TERM" rowHeight="89" id="rl7-VE-dNd" userLabel="ExistingTermCell" customClass="ExistingTermCell" customModule="Mocab" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EXISTING_TERM" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EXISTING_TERM" rowHeight="89" id="rl7-VE-dNd" userLabel="ExistingTermCell" customClass="ExistingTermCell" customModule="Mocab" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rl7-VE-dNd" id="b8k-pt-jma">
