@@ -8,9 +8,9 @@ class OxfordDictionaryService: TermDefiner {
     private static let inflectionsEndpoint = baseURL.appendingPathComponent("inflections")
     private static let definitionsEndpoint = baseURL.appendingPathComponent("entries")
     
-    //    #error("update appId")
+    #error("update appId")
     private static let appId = ""
-    //    #error("update appKey")
+    #error("update appKey")
     private static let appKey = ""
 
 
