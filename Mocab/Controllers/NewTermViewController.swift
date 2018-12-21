@@ -7,6 +7,7 @@ class NewTermViewController: UIViewController {
     @IBOutlet weak var saveTermButton: UIButton!
     @IBOutlet weak var addCustomDefinitionButton: UIButton!
     @IBOutlet weak var customDefinitionTextField: UITextField!
+    private let definitionPrefix = "- "
     
     private var viewModel: NewTermModelView?
     private var customDefinitionTextFieldDelegate: UITextFieldDelegate?
@@ -17,10 +18,14 @@ class NewTermViewController: UIViewController {
     
     @IBAction func saveEntryButtonTapped(_ sender: Any) {
         if let term = newTermTextField.text,
-            let definition = viewModel?.selectedDefinitions().first {
-            viewModel?.saveEntry(
+            let viewModel = viewModel {
+            let definitions = viewModel.selectedDefinitions()
+                .map { definitionPrefix + $0 }
+                .joined(separator: "\n")
+             
+            viewModel.saveEntry(
                 term: term,
-                chosenDefinition: definition
+                chosenDefinition: definitions
             )
         }
         
