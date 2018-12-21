@@ -41,7 +41,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         statusUpdated: @escaping () -> (),
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> (),
         forStatus status: Term.Status = .inProgress
-        ) {
+    ) {
         self.updatedDisplayedTerms = updatedDisplayedTerms
         self.didUpdateScreenTitle = didUpdateScreenTitle
         self.statusUpdated = statusUpdated
@@ -78,7 +78,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         forStatus statusType: Term.Status,
         statusUpdated: @escaping () -> (),
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
-        ) -> [TermModelView] {
+    ) -> [TermModelView] {
         let terms = TermModelViewImplFactory.getViewModels(
             for: statusType,
             statusUpdated: statusUpdated,
