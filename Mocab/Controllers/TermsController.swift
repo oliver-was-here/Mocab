@@ -3,9 +3,6 @@ import UIKit
 class TermsController: UIViewController {
     @IBOutlet weak var termsTable: UITableView!
     @IBOutlet weak var screenTitle: UILabel!
-    @IBOutlet weak var newTermButton: UIButton!
-    
-    private var isAddingNewTerm = false // state variable used to determine view state of ExistingTermCell
     
     private var swipeDelegate = SwipeTermStatusDelegate(forTermType: .inProgress)
     private var terms: [TermModelView] {
@@ -16,9 +13,7 @@ class TermsController: UIViewController {
     
     private var reviewTermsViewModel: ReviewTermsViewModel?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(_ animated: Bool) {
         reviewTermsViewModel = ReviewTermsViewModelImpl(
             updatedStatusDisplayed: { newStatus in
                 // todo see about performing the swipe delegate on a per-cell basis (e.g. conflating this with the statusUpdated item. called per cell not for entire table)
@@ -38,22 +33,14 @@ class TermsController: UIViewController {
             }
         )
         
-        termsTable.delegate = tableDelegate
-        termsTable.dataSource = self
+        termsTable.reloadData()
     }
     
-    @IBAction func newTermButtonTapped(_ sender: Any) {
-        /*
-         todo look into tidying up architecture
-         
-         logic in method is confused by isAddingNewTerm state variable.
-         used in DataSource to determine cell count. called methods therefore
-         reference the value indirectly. implication being must clean up old
-         state before updating state variable.
-         */
-        let newAddingTermState = !isAddingNewTerm
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        newAddingTermState ? configureAddingTermState() : configureReviewTermsState()
+        termsTable.delegate = tableDelegate
+        termsTable.dataSource = self
     }
     
     @IBAction func snoozedTapped(_ sender: Any) {
@@ -73,32 +60,6 @@ class TermsController: UIViewController {
         reviewTermsViewModel?.updateDisplayedTerms(to: status)
     }
     
-    private func configureAddingTermState() {
-        let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
-        
-        if let oldSelected = termsTable.indexPathForSelectedRow {
-            tableDelegate.tableView(termsTable, didDeselectRowAt: oldSelected)
-        }
-        
-        isAddingNewTerm = true
-        
-        termsTable.insertRows(at: [firstCellIndexPath], with: .automatic)
-        if let newCell = termsTable.cellForRow(at: firstCellIndexPath) as? NewTermCell {
-            newCell.newTerm.becomeFirstResponder()
-            newCell.newTerm.delegate = self
-        }
-        
-        newTermButton.setTitle("-", for: .normal)
-    }
-    
-    private func configureReviewTermsState() {
-        let firstCellIndexPath = IndexPath.init(row: 0, section: 0)
-        
-        isAddingNewTerm = false
-        termsTable.deleteRows(at: [firstCellIndexPath], with: .automatic)
-        newTermButton.setTitle("+", for: .normal)
-    }
-    
     private func updateCellHeight(_ existingRowCell: ExistingTermCell, _ viewModel: TermModelView) {
         existingRowCell.definitionTextView.textContainer.maximumNumberOfLines = viewModel.numLines
         existingRowCell.definitionTextView.invalidateIntrinsicContentSize()
@@ -115,15 +76,11 @@ extension TermsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isAddingNewTerm ? terms.count + 1 : terms.count
+        return terms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isAddingNewTerm && IndexPath(row: 0, section: 0) == indexPath {
-            return createNewTermCell(forTable: termsTable)
-        } else {
-            return createTermCell(term: getTerm(at: indexPath), tableView)
-        }
+        return createExistingTermCell(term: getTerm(at: indexPath), tableView)
     }
     
     // Mark: Private
@@ -132,7 +89,7 @@ extension TermsController: UITableViewDataSource {
         return terms[indexPath.row]
     }
     
-    private func createTermCell(term: TermModelView, _ tableView: UITableView) -> UITableViewCell {
+    private func createExistingTermCell(term: TermModelView, _ tableView: UITableView) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExistingTermCell.ID) as? ExistingTermCell
             else {
                 return UITableViewCell()
@@ -140,71 +97,6 @@ extension TermsController: UITableViewDataSource {
         
         cell.configure(modelView: term, swipeDelegate: swipeDelegate, textViewDelegate: self)
         return cell
-    }
-    
-    private func createNewTermCell(forTable tableView: UITableView) -> UITableViewCell {
-        guard let inputCell = tableView.dequeueReusableCell(withIdentifier: NewTermCell.ID) as? NewTermCell
-            else {
-                return UITableViewCell()
-            }
-        
-        inputCell.newTerm.delegate = self
-        return inputCell
-    }
-}
-
-// MARK: UITextFieldDelegate
-extension TermsController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if isAddingNewTerm {
-            configureReviewTermsState()
-            
-            guard let receivedTerm = textField.text
-                else { return }
-            textField.text = nil
-            
-            reviewTermsViewModel?
-                .addTerm(receivedTerm)
-                .done { _ in
-                    self.isAddingNewTerm = false
-                    self.termsTable.reloadData()
-                }.catch { error in
-                    self.handleNoDefinition(receivedTerm: receivedTerm)
-                }
-        }
-    }
-    
-    // MARK: private
-    private func handleNoDefinition(receivedTerm: String) {
-        let alert: UIAlertController = AlertProvider.errorAlert(
-            title: "Unable to find definition",
-            message: "Would you like to provide a custom definition?",
-            actions: [
-                UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { _ in
-                    do {
-                        try self.requestCustomDefinition(receivedTerm)
-                    } catch {
-                        print("ERROR: Unable to get definitions: \(error)")
-                    }
-                },
-                UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil)
-            ]
-        )
-        self.present(alert, animated: true)
-    }
-    
-    private func requestCustomDefinition(_ receivedTerm: String) throws {
-        reviewTermsViewModel?.addTerm(receivedTerm, "")
-        termsTable.reloadData()
-        
-        // todo this logic assumes addTerm adds the cell to end of list. a "request definition" w/ IndexPath binding would be more sensible
-        let termsSection = self.termsTable.numberOfSections - 1
-        let lastRow = self.termsTable.numberOfRows(inSection: termsSection) - 1
-        let indexPath: IndexPath = IndexPath(row: lastRow, section: termsSection)
-        self.termsTable.scrollToRow(at: indexPath, at: .top, animated: true)
-        if let cell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
-            cell.definitionTextView.becomeFirstResponder() // todo broken, does not open keyboard. looking at moving this to popover so putting off the fix for now
-        }
     }
 }
 

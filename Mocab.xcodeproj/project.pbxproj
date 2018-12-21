@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1319277921CC98B400860860 /* CustomDefinitionTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319277821CC98B400860860 /* CustomDefinitionTextFieldDelegate.swift */; };
 		1334C6F92150BC38002B17E6 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C6F82150BC38002B17E6 /* Term.swift */; };
 		1334C6FD2150BEEE002B17E6 /* JSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */; };
 		1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */; };
+		13465A7721BC92DB0004D4FA /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13465A7621BC92DB0004D4FA /* StackView.swift */; };
 		135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */; };
 		135FCC872170599E00C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
 		135FCC88217059A300C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
@@ -27,6 +29,11 @@
 		1385266F215341660024F099 /* NewTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewTermCell.swift */; };
 		13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */; };
 		13AE78C0217D33CC002B440C /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78BF217D33CC002B440C /* AlertProvider.swift */; };
+		13BA1AC321A8A4A800F52BE9 /* DefinitionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BA1AC221A8A4A800F52BE9 /* DefinitionView.xib */; };
+		13C594A421CC64830035E430 /* DefinitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A321CC64830035E430 /* DefinitionView.swift */; };
+		13C594A621CC64BE0035E430 /* DefinitionModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A521CC64BE0035E430 /* DefinitionModelView.swift */; };
+		13C594A821CC64FD0035E430 /* NewTermModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A721CC64FD0035E430 /* NewTermModelView.swift */; };
+		13C594AA21CC65250035E430 /* NewTermModelViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A921CC65250035E430 /* NewTermModelViewImpl.swift */; };
 		13C8DA092152027900B3FA5D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA082152027900B3FA5D /* Alamofire.framework */; };
 		13C8DA0B2152028200B3FA5D /* PMKAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */; };
 		13C8DA0D2152028C00B3FA5D /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */; };
@@ -44,6 +51,7 @@
 		13F1D919219BCF3E00E145CC /* KeyboardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D918219BCF3E00E145CC /* KeyboardHelpers.swift */; };
 		13F1D91B219FBC8C00E145CC /* ReviewTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D91A219FBC8C00E145CC /* ReviewTermsViewModel.swift */; };
 		13F1D91D219FCC1C00E145CC /* ReviewTermsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D91C219FCC1C00E145CC /* ReviewTermsViewModelImpl.swift */; };
+		13F1D91F219FD24600E145CC /* NewTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D91E219FD24600E145CC /* NewTermViewController.swift */; };
 		13FEB5712188074000F0E3A9 /* TermModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5702188074000F0E3A9 /* TermModelView.swift */; };
 		13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */; };
 		13FEB5752188077500F0E3A9 /* TermModelViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */; };
@@ -84,9 +92,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1319277821CC98B400860860 /* CustomDefinitionTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDefinitionTextFieldDelegate.swift; sourceTree = "<group>"; };
 		1334C6F82150BC38002B17E6 /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMapper.swift; sourceTree = "<group>"; };
 		1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OxfordDictionaryService.swift; sourceTree = "<group>"; };
+		13465A7621BC92DB0004D4FA /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTermCell.swift; sourceTree = "<group>"; };
 		135FCC862170599E00C3A633 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		13644F18214ED7B700F20718 /* Mocab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocab.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +118,11 @@
 		1385266E215341660024F099 /* NewTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermCell.swift; sourceTree = "<group>"; };
 		13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTermStatusDelegate.swift; sourceTree = "<group>"; };
 		13AE78BF217D33CC002B440C /* AlertProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProvider.swift; sourceTree = "<group>"; };
+		13BA1AC221A8A4A800F52BE9 /* DefinitionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefinitionView.xib; sourceTree = "<group>"; };
+		13C594A321CC64830035E430 /* DefinitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionView.swift; sourceTree = "<group>"; };
+		13C594A521CC64BE0035E430 /* DefinitionModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionModelView.swift; sourceTree = "<group>"; };
+		13C594A721CC64FD0035E430 /* NewTermModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermModelView.swift; sourceTree = "<group>"; };
+		13C594A921CC65250035E430 /* NewTermModelViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermModelViewImpl.swift; sourceTree = "<group>"; };
 		13C8DA082152027900B3FA5D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		13C8DA0A2152028200B3FA5D /* PMKAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKAlamofire.framework; path = Carthage/Build/iOS/PMKAlamofire.framework; sourceTree = "<group>"; };
 		13C8DA0C2152028C00B3FA5D /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
@@ -122,6 +137,7 @@
 		13F1D918219BCF3E00E145CC /* KeyboardHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelpers.swift; sourceTree = "<group>"; };
 		13F1D91A219FBC8C00E145CC /* ReviewTermsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTermsViewModel.swift; sourceTree = "<group>"; };
 		13F1D91C219FCC1C00E145CC /* ReviewTermsViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTermsViewModelImpl.swift; sourceTree = "<group>"; };
+		13F1D91E219FD24600E145CC /* NewTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTermViewController.swift; path = ../../../mocab/Mocab/Controllers/NewTermViewController.swift; sourceTree = "<group>"; };
 		13FEB5702188074000F0E3A9 /* TermModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelView.swift; sourceTree = "<group>"; };
 		13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelViewImpl.swift; sourceTree = "<group>"; };
 		13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelViewFactory.swift; sourceTree = "<group>"; };
@@ -157,6 +173,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1319277721CC989C00860860 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1319277821CC98B400860860 /* CustomDefinitionTextFieldDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		1334C6F72150BC23002B17E6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				13644F1D214ED7B700F20718 /* TermsController.swift */,
+				13F1D91E219FD24600E145CC /* NewTermViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -222,6 +247,7 @@
 		13644F1A214ED7B700F20718 /* Mocab */ = {
 			isa = PBXGroup;
 			children = (
+				1319277721CC989C00860860 /* Delegates */,
 				13FEB56F2188072E00F0E3A9 /* ModelViews */,
 				13CCAD8721535802004534F5 /* Errors */,
 				13CCAD8421534F89004534F5 /* Extensions */,
@@ -262,6 +288,8 @@
 			children = (
 				1385266E215341660024F099 /* NewTermCell.swift */,
 				135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */,
+				13BA1AC221A8A4A800F52BE9 /* DefinitionView.xib */,
+				13C594A321CC64830035E430 /* DefinitionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +299,7 @@
 			children = (
 				13CCAD8521534F9C004534F5 /* UITextField.swift */,
 				13F1D916219BCE9500E145CC /* UITextView.swift */,
+				13465A7621BC92DB0004D4FA /* StackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +341,9 @@
 				13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */,
 				13F1D91A219FBC8C00E145CC /* ReviewTermsViewModel.swift */,
 				13F1D91C219FCC1C00E145CC /* ReviewTermsViewModelImpl.swift */,
+				13C594A521CC64BE0035E430 /* DefinitionModelView.swift */,
+				13C594A721CC64FD0035E430 /* NewTermModelView.swift */,
+				13C594A921CC65250035E430 /* NewTermModelViewImpl.swift */,
 			);
 			path = ModelViews;
 			sourceTree = "<group>";
@@ -426,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13BA1AC321A8A4A800F52BE9 /* DefinitionView.xib in Resources */,
 				13644F26214ED7BA00F20718 /* LaunchScreen.storyboard in Resources */,
 				13644F23214ED7BA00F20718 /* Assets.xcassets in Resources */,
 				13644F21214ED7B700F20718 /* Main.storyboard in Resources */,
@@ -460,16 +493,22 @@
 				13D8F6D12152180E003F573C /* TermDefiner.swift in Sources */,
 				135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */,
 				13D8F6CD21521771003F573C /* DefinitionResponse.swift in Sources */,
+				13C594A621CC64BE0035E430 /* DefinitionModelView.swift in Sources */,
 				13FEB5712188074000F0E3A9 /* TermModelView.swift in Sources */,
 				13D8F6D321521844003F573C /* Language.swift in Sources */,
 				13FEB5752188077500F0E3A9 /* TermModelViewFactory.swift in Sources */,
 				1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */,
+				1319277921CC98B400860860 /* CustomDefinitionTextFieldDelegate.swift in Sources */,
+				13F1D91F219FD24600E145CC /* NewTermViewController.swift in Sources */,
 				13F1D919219BCF3E00E145CC /* KeyboardHelpers.swift in Sources */,
 				13AE78C0217D33CC002B440C /* AlertProvider.swift in Sources */,
 				13CC14C2217EB6B300091468 /* TermTableViewDelegate.swift in Sources */,
+				13C594A421CC64830035E430 /* DefinitionView.swift in Sources */,
+				13465A7721BC92DB0004D4FA /* StackView.swift in Sources */,
 				1385266821531D2F0024F099 /* TermService.swift in Sources */,
 				13D8F6CF2152179C003F573C /* InflectionResponse.swift in Sources */,
 				13CCAD8621534F9C004534F5 /* UITextField.swift in Sources */,
+				13C594AA21CC65250035E430 /* NewTermModelViewImpl.swift in Sources */,
 				13F1D91B219FBC8C00E145CC /* ReviewTermsViewModel.swift in Sources */,
 				13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */,
 				13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */,
@@ -477,6 +516,7 @@
 				13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */,
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
 				13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */,
+				13C594A821CC64FD0035E430 /* NewTermModelView.swift in Sources */,
 				1385266A2153210D0024F099 /* UserDefaultsTermService.swift in Sources */,
 				13F1D917219BCE9500E145CC /* UITextView.swift in Sources */,
 			);

@@ -14,8 +14,4 @@ protocol ReviewTermsViewModel {
     )
     
     func updateDisplayedTerms(to status: Term.Status)
-    
-    func addTerm(_ receivedTerm: String) -> Promise<Void>
-    
-    func addTerm(_ receivedTerm: String, _ receivedDefinition: String)
 }

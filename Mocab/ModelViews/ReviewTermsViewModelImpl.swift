@@ -61,23 +61,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         )
         updatedDisplayedTerms(displayedTerms)
     }
-    
-    func addTerm(_ receivedTerm: String) -> Promise<Void> {
-        return ServiceInjector.definer
-            .getDefinitions(forTerm: receivedTerm)
-            .done { definitions in
-                if definitions.isEmpty {
-                    throw UnexpectedPayloadError(message: "empty definition list")
-                }
-                
-                self.saveTerm(forTerm: receivedTerm, andDefinitions: definitions)
-        }
-    }
-    
-    func addTerm(_ receivedTerm: String, _ receivedDefinition: String) {
-        saveTerm(forTerm: receivedTerm, andDefinitions: [receivedDefinition])
-    }
-    
+
     // MARK: private
     static private func getTitle(forStatus status: Term.Status) -> String {
         switch(status) {
@@ -88,23 +72,6 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         case .mastered:
             return "mastered"
         }
-    }
-    
-    private func saveTerm(
-        forTerm receivedTerm: String,
-        andDefinitions definitions: [String]
-        ) {
-        let term = Term(
-            asEntered: receivedTerm,
-            definition: definitions.first ?? "",
-            status: Term.Status.inProgress
-        )
-        
-        if termsStatus == .inProgress {
-            displayedTerms.append(createModelView(forTerm: term))
-        }
-        
-        ServiceInjector.termsService.save(term, retainOrder: false)
     }
     
     static private func initModelViews(
