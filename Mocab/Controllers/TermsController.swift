@@ -25,7 +25,7 @@ class TermsController: UIViewController {
             didUpdateScreenTitle: { newTitle in
                 self.screenTitle.text = newTitle
             },
-            statusUpdated: { self.termsTable.reloadData() },
+            statusUpdated: { self.reviewTermsViewModel?.removeTerm(term: $0) },
             numLinesUpdated: {[unowned self] viewModel, indexPath in
                 if let existingRowCell = self.termsTable.cellForRow(at: indexPath) as? ExistingTermCell {
                     self.updateCellHeight(existingRowCell, viewModel)

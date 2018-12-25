@@ -3,7 +3,7 @@ import PromiseKit
 
 class ReviewTermsViewModelImpl: ReviewTermsViewModel {
     // cell callbacks piped to child MVs on creation
-    private let statusUpdated: () -> () // single term
+    private let statusUpdated: (TermModelView) -> () // single term
     private let numLinesUpdated: (TermModelView, IndexPath) -> ()
     
     // table callbacks
@@ -27,6 +27,10 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
     }
     
     // MARK: ReviewTermsViewModel
+    func removeTerm(term: TermModelView) {
+        displayedTerms = displayedTerms.filter { $0 !== term }
+    }
+
     func updateDisplayedTerms(to status: Term.Status) {
         termsStatus = status
         displayedTerms = initModelViews(for: status)
@@ -38,7 +42,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         updatedStatusDisplayed: @escaping (Term.Status) -> (),
         updatedDisplayedTerms: @escaping ([TermModelView]) -> (),
         didUpdateScreenTitle: @escaping (String) -> (),
-        statusUpdated: @escaping () -> (),
+        statusUpdated: @escaping (TermModelView) -> (),
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> (),
         forStatus status: Term.Status = .inProgress
     ) {
@@ -76,7 +80,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
     
     static private func initModelViews(
         forStatus statusType: Term.Status,
-        statusUpdated: @escaping () -> (),
+        statusUpdated: @escaping (TermModelView) -> (),
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
     ) -> [TermModelView] {
         return ServiceInjector.termsService

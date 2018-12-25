@@ -7,7 +7,7 @@ protocol TermModelView: class {
     
     init(
         term: Term,
-        statusUpdated: @escaping () -> (),
+        statusUpdated: @escaping (TermModelView) -> (),
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
     )
 
