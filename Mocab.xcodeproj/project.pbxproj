@@ -12,6 +12,7 @@
 		1334C6FD2150BEEE002B17E6 /* JSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */; };
 		1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */; };
 		13465A7721BC92DB0004D4FA /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13465A7621BC92DB0004D4FA /* StackView.swift */; };
+		134D4B5F21D2DC1100985B8E /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134D4B5E21D2DC1100985B8E /* Time.swift */; };
 		135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */; };
 		135FCC872170599E00C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
 		135FCC88217059A300C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
@@ -97,6 +98,7 @@
 		1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMapper.swift; sourceTree = "<group>"; };
 		1334C7002150C10A002B17E6 /* OxfordDictionaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OxfordDictionaryService.swift; sourceTree = "<group>"; };
 		13465A7621BC92DB0004D4FA /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		134D4B5E21D2DC1100985B8E /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTermCell.swift; sourceTree = "<group>"; };
 		135FCC862170599E00C3A633 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		13644F18214ED7B700F20718 /* Mocab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocab.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				1334C6FC2150BEEE002B17E6 /* JSONMapper.swift */,
 				13D8F6D221521844003F573C /* Language.swift */,
 				13F1D918219BCF3E00E145CC /* KeyboardHelpers.swift */,
+				134D4B5E21D2DC1100985B8E /* Time.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				13D8F6D12152180E003F573C /* TermDefiner.swift in Sources */,
 				135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */,
 				13D8F6CD21521771003F573C /* DefinitionResponse.swift in Sources */,
+				134D4B5F21D2DC1100985B8E /* Time.swift in Sources */,
 				13C594A621CC64BE0035E430 /* DefinitionModelView.swift in Sources */,
 				13FEB5712188074000F0E3A9 /* TermModelView.swift in Sources */,
 				13D8F6D321521844003F573C /* Language.swift in Sources */,

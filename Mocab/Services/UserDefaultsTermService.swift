@@ -1,7 +1,7 @@
 import Foundation
 
 class UserDefaultsTermService: TermService {
-    private static let TERMS_KEY = "usersTerms"
+    private static let TERMS_KEY = "usersTerms-v2"
     private static let defaults = UserDefaults.standard
     
     // MARK: TermService
@@ -40,11 +40,6 @@ class UserDefaultsTermService: TermService {
         }
         
         save(terms: terms)
-    }
-    
-    static func delete(_ term: Term) {
-        let updatedTerms = getAll().filter { $0.id != term.id }
-        save(terms: updatedTerms)
     }
     
     // MARK: Private

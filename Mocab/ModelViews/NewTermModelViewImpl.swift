@@ -34,7 +34,8 @@ class NewTermModelViewImpl: NewTermModelView {
         let term = Term(
             asEntered: term,
             definition: chosenDefinition,
-            status: Term.Status.inProgress
+            status: Term.Status.inProgress,
+            lastStatusUpdate: Date()
         )
         
         ServiceInjector.termsService.save(term, retainOrder: false)

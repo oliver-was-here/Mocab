@@ -4,6 +4,7 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    static private let TIME_TO_SNOOZE = Time(days: 10).toSeconds()
     static private let CURRENT_TERM_KEY = "termInProgress"
     private var center: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
@@ -22,11 +23,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         configureTermNotifications()
+        
+        let wakeUpDate = Date(timeIntervalSinceNow: -AppDelegate.TIME_TO_SNOOZE)
+        awakenSnoozedTerm(ifOlderThan: wakeUpDate)
     }
 }
 
 extension AppDelegate {
     // MARK: Private
+    private func awakenSnoozedTerm(ifOlderThan awakenDate: Date) {
+        ServiceInjector.termsService
+            .getAll()
+            .filter { $0.status == .snoozed }
+            .filter { $0.lastStatusUpdate.compare(awakenDate) == .orderedAscending }
+            .map { $0.changeValues(status: .inProgress) }
+            .forEach { ServiceInjector.termsService.save($0, retainOrder: false) }
+    }
+    
     private func configureTermNotifications() {
         clearOldNotifications()
         
