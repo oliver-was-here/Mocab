@@ -26,7 +26,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         }
     }
     
-    // ReviewTermsViewModel
+    // MARK: ReviewTermsViewModel
     func updateDisplayedTerms(to status: Term.Status) {
         termsStatus = status
         displayedTerms = initModelViews(for: status)
