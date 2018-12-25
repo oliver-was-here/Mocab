@@ -79,13 +79,15 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         statusUpdated: @escaping () -> (),
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
     ) -> [TermModelView] {
-        let terms = TermModelViewImplFactory.getViewModels(
-            for: statusType,
-            statusUpdated: statusUpdated,
-            numLinesUpdated: numLinesUpdated
-        )
-        
-        return terms
+        return ServiceInjector.termsService
+            .getAll()
+            .filter { $0.status == statusType }
+            .map { TermModelViewImpl(
+                term: $0,
+                statusUpdated: statusUpdated,
+                numLinesUpdated: numLinesUpdated
+            )
+        }
     }
     
     private func createModelView(forTerm term: Term) -> TermModelView {

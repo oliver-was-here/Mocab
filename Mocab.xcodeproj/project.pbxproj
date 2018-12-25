@@ -55,7 +55,6 @@
 		13F1D91F219FD24600E145CC /* NewTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1D91E219FD24600E145CC /* NewTermViewController.swift */; };
 		13FEB5712188074000F0E3A9 /* TermModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5702188074000F0E3A9 /* TermModelView.swift */; };
 		13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */; };
-		13FEB5752188077500F0E3A9 /* TermModelViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +141,6 @@
 		13F1D91E219FD24600E145CC /* NewTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTermViewController.swift; path = ../../../mocab/Mocab/Controllers/NewTermViewController.swift; sourceTree = "<group>"; };
 		13FEB5702188074000F0E3A9 /* TermModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelView.swift; sourceTree = "<group>"; };
 		13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelViewImpl.swift; sourceTree = "<group>"; };
-		13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModelViewFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,7 +339,6 @@
 			children = (
 				13FEB5702188074000F0E3A9 /* TermModelView.swift */,
 				13FEB5722188076200F0E3A9 /* TermModelViewImpl.swift */,
-				13FEB5742188077500F0E3A9 /* TermModelViewFactory.swift */,
 				13F1D91A219FBC8C00E145CC /* ReviewTermsViewModel.swift */,
 				13F1D91C219FCC1C00E145CC /* ReviewTermsViewModelImpl.swift */,
 				13C594A521CC64BE0035E430 /* DefinitionModelView.swift */,
@@ -500,7 +497,6 @@
 				13C594A621CC64BE0035E430 /* DefinitionModelView.swift in Sources */,
 				13FEB5712188074000F0E3A9 /* TermModelView.swift in Sources */,
 				13D8F6D321521844003F573C /* Language.swift in Sources */,
-				13FEB5752188077500F0E3A9 /* TermModelViewFactory.swift in Sources */,
 				1334C7012150C10A002B17E6 /* OxfordDictionaryService.swift in Sources */,
 				1319277921CC98B400860860 /* CustomDefinitionTextFieldDelegate.swift in Sources */,
 				13F1D91F219FD24600E145CC /* NewTermViewController.swift in Sources */,
