@@ -14,7 +14,7 @@ class RealmTermService: TermService {
         return terms
     }
     
-    static func save(_ newTerm: Term, retainOrder: Bool) {
+    static func save(_ newTerm: Term) {
         do {
             try realm?.write {
                 realm?.add(dtoToRealmTerm(newTerm), update: true)

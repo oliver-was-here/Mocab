@@ -37,7 +37,7 @@ extension AppDelegate {
             .filter { $0.status == .snoozed }
             .filter { $0.lastStatusUpdate.compare(awakenDate) == .orderedAscending }
             .map { $0.changeValues(status: .inProgress) }
-            .forEach { ServiceInjector.termsService.save($0, retainOrder: false) }
+            .forEach { ServiceInjector.termsService.save($0) }
     }
     
     private func configureTermNotifications() {

@@ -27,7 +27,7 @@ class TermModelViewImpl: TermModelView {
     
     func selectedNewStatus(_ status: Term.Status) {
         termEntity.status = status
-        termsService.save(termEntity, retainOrder: false)
+        termsService.save(termEntity)
         
         statusUpdated(self)
     }
@@ -35,7 +35,7 @@ class TermModelViewImpl: TermModelView {
     func updateDefinition(newDefinition: String) {
         if newDefinition != termEntity.definition {
             termEntity.definition = newDefinition
-            termsService.save(termEntity, retainOrder: true)
+            termsService.save(termEntity)
         }
     }
     

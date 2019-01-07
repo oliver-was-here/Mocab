@@ -38,7 +38,7 @@ class NewTermModelViewImpl: NewTermModelView {
             lastStatusUpdate: Date()
         )
         
-        ServiceInjector.termsService.save(term, retainOrder: false)
+        ServiceInjector.termsService.save(term)
     }
     
     func selectedDefinitions() -> [String] {
