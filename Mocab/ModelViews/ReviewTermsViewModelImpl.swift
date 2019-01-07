@@ -84,8 +84,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
     ) -> [TermModelView] {
         return ServiceInjector.termsService
-            .getAll()
-            .filter { $0.status == statusType }
+            .getAll(statusType)
             .map { TermModelViewImpl(
                 term: $0,
                 statusUpdated: statusUpdated,

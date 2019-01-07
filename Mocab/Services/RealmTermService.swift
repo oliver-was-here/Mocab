@@ -5,13 +5,12 @@ class RealmTermService: TermService {
     private static let realm = try? Realm()
     private static let termsQuery = realm?.objects(RealmTerm.self)
         .sorted(byKeyPath: "lastStatusUpdate")
-    private static var terms: [Term] {
-        return termsQuery?.map { realmTermToDTO($0) } ?? []
-    }
     
     // MARK: TermService
-    static func getAll() -> [Term] {
-        return terms
+    static func getAll(_ status: Term.Status) -> [Term] {
+        return termsQuery?
+            .filter("status = \(status.rawValue)")
+            .map { realmTermToDTO($0) } ?? []
     }
     
     static func save(_ newTerm: Term) {

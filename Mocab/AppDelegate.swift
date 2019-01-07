@@ -33,8 +33,7 @@ extension AppDelegate {
     // MARK: Private
     private func awakenSnoozedTerm(ifOlderThan awakenDate: Date) {
         ServiceInjector.termsService
-            .getAll()
-            .filter { $0.status == .snoozed }
+            .getAll(.snoozed)
             .filter { $0.lastStatusUpdate.compare(awakenDate) == .orderedAscending }
             .map { $0.changeValues(status: .inProgress) }
             .forEach { ServiceInjector.termsService.save($0) }
