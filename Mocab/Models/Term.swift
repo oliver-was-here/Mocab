@@ -19,7 +19,7 @@ struct Term: Codable {
         )
     }
     
-    enum Status: String, Codable {
+    @objc enum Status: Int, Codable {
         case inProgress
         case snoozed
         case mastered
