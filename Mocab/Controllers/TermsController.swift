@@ -1,6 +1,6 @@
 import UIKit
 
-class TermsController: UIViewController {
+class TermsController: UIViewController, UpdateSelectedListDelegate {
     @IBOutlet weak var termsTable: UITableView!
     @IBOutlet weak var screenTitle: UILabel!
     
@@ -14,6 +14,12 @@ class TermsController: UIViewController {
     private var reviewTermsViewModel: ReviewTermsViewModel?
     
     override func viewDidAppear(_ animated: Bool) {
+        termsTable.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         reviewTermsViewModel = ReviewTermsViewModelImpl(
             updatedStatusDisplayed: { newStatus in
                 // todo see about performing the swipe delegate on a per-cell basis (e.g. conflating this with the statusUpdated item. called per cell not for entire table)
@@ -33,33 +39,16 @@ class TermsController: UIViewController {
             }
         )
         
-        termsTable.reloadData()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
         termsTable.delegate = tableDelegate
         termsTable.dataSource = self
     }
     
-    @IBAction func snoozedTapped(_ sender: Any) {
-        bindChangeStatusTapped(forStatus: .snoozed)
-    }
-    
-    @IBAction func masteredTapped(_ sender: Any) {
-        bindChangeStatusTapped(forStatus: .mastered)
-    }
-    
-    @IBAction func inProgressTapped(_ sender: Any) {
-        bindChangeStatusTapped(forStatus: .inProgress)
-    }
-    
-    // MARK: Private
-    private func bindChangeStatusTapped(forStatus status: Term.Status) {
+    // MARK: UpdateSelectedListDelegate
+    func display(status: Term.Status) {
         reviewTermsViewModel?.updateDisplayedTerms(to: status)
     }
     
+    // MARK: Private
     private func updateCellHeight(_ existingRowCell: ExistingTermCell, _ viewModel: TermModelView) {
         existingRowCell.definitionTextView.textContainer.maximumNumberOfLines = viewModel.numLines
         existingRowCell.definitionTextView.invalidateIntrinsicContentSize()
