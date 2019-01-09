@@ -4,6 +4,7 @@ import UIKit
 class DefinitionView: UIView {
     @IBOutlet weak var definitionLabel: UILabel!
     @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var selectHeightConstraint: NSLayoutConstraint!
     private var viewModel: DefinitionModelView?
     
     func setSelectedState(isSelected: Bool) {
@@ -28,6 +29,7 @@ class DefinitionView: UIView {
     static func instantiate(viewModel: DefinitionModelView) -> DefinitionView {
         let definitionView = UINib(nibName: "DefinitionView", bundle: Bundle.main)
             .instantiate(withOwner: nil, options: nil)[0] as! DefinitionView
+        definitionView.selectHeightConstraint.constant = definitionView.definitionLabel.font.lineHeight
         definitionView.viewModel = viewModel
         definitionView.definitionLabel.text = viewModel.definition
         definitionView.setSelectedState(isSelected: viewModel.isSelected)
