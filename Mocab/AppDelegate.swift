@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         center.requestAuthorization(options: [.alert]) { (granted, error) in
             if let error = error {
-                print("ERROR: requestAuthorization failed: \(error)")
+                log(.error, "requestAuthorization failed: \(error)")
             }
         }
         
@@ -64,7 +64,7 @@ extension AppDelegate {
             
             center.add(request) { error in
                 if let error = error {
-                    print("ERROR: \(String(describing: error))")
+                    log(.error, "\(String(describing: error))")
                 }
             }
         }

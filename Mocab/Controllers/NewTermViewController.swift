@@ -111,7 +111,7 @@ extension NewTermViewController: UITextFieldDelegate {
                     do {
                         try self.requestCustomDefinition(receivedTerm)
                     } catch {
-                        print("ERROR: Unable to get definitions: \(error)")
+                        log(.error, "Unable to get definitions: \(error)")
                     }
                 },
                 UIAlertAction(

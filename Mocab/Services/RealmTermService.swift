@@ -19,7 +19,7 @@ class RealmTermService: TermService {
                 realm?.add(dtoToRealmTerm(newTerm), update: true)
             }
         } catch {
-            print("ERROR: failed to add term \(newTerm)")
+            log(.error, "failed to add term \(newTerm)")
         }
     }
     
