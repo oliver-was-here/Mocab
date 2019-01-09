@@ -50,7 +50,7 @@ extension AppDelegate {
     }
     
     private func createNewNotifications() {
-        if let inProgressTerm = termsService.getInProgressTerm() {
+        if let inProgressTerm = termsService.inProgressTerm {
             let notification = UNMutableNotificationContent()
             notification.title = inProgressTerm.asEntered
             notification.body = inProgressTerm.definition

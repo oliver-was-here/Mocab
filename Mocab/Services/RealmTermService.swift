@@ -7,6 +7,15 @@ class RealmTermService: TermService {
         .sorted(byKeyPath: "lastStatusUpdate")
     
     // MARK: TermService
+    static var inProgressTerm: Term? {
+        guard let realmTerm = termsQuery?
+            .filter("status = \(Term.Status.inProgress.rawValue)")
+            .first
+            else { return nil }
+        
+        return realmTermToDTO(realmTerm)
+    }
+    
     static func getAll(_ status: Term.Status) -> [Term] {
         return termsQuery?
             .filter("status = \(status.rawValue)")
@@ -21,15 +30,6 @@ class RealmTermService: TermService {
         } catch {
             log(.error, "failed to add term \(newTerm)")
         }
-    }
-    
-    static func getInProgressTerm() -> Term? {
-        guard let realmTerm = termsQuery?
-            .filter("status = \(Term.Status.inProgress.rawValue)")
-            .first
-            else { return nil }
-        
-        return realmTermToDTO(realmTerm)
     }
     
     private static func realmTermToDTO(_ realmTerm: RealmTerm) -> Term {
