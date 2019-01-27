@@ -9,6 +9,7 @@ class NewTermViewController: UIViewController {
     @IBOutlet weak var customDefinitionTextField: UITextField!
     private let definitionPrefix = "- "
     
+    var listID: String? = nil
     private var viewModel: NewTermModelView?
     private var customDefinitionTextFieldDelegate: UITextFieldDelegate?
     
@@ -41,6 +42,7 @@ class NewTermViewController: UIViewController {
         newTermTextField.delegate = self
         
         let viewModel: NewTermModelViewImpl = NewTermModelViewImpl(
+            listID: listID,
             definitionsAdded: { viewModels in
                 viewModels.forEach { viewModel in
                     let definitionView = DefinitionView.instantiate(viewModel: viewModel)

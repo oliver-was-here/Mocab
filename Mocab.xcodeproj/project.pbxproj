@@ -25,6 +25,7 @@
 		134D4B6B21D8643500985B8E /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 134D4B6621D8641F00985B8E /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		134D4B6C21D8643600985B8E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134D4B6721D8642200985B8E /* RealmSwift.framework */; };
 		134D4B6D21D8643600985B8E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 134D4B6721D8642200985B8E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		135C427821FD47D900BC669A /* RealmTermList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C427721FD47D900BC669A /* RealmTermList.swift */; };
 		135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */; };
 		135FCC872170599E00C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
 		135FCC88217059A300C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
@@ -119,6 +120,7 @@
 		134D4B5E21D2DC1100985B8E /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		134D4B6621D8641F00985B8E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		134D4B6721D8642200985B8E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		135C427721FD47D900BC669A /* RealmTermList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTermList.swift; sourceTree = "<group>"; };
 		135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTermCell.swift; sourceTree = "<group>"; };
 		135FCC862170599E00C3A633 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		13644F18214ED7B700F20718 /* Mocab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocab.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +213,7 @@
 			children = (
 				1334C6F82150BC38002B17E6 /* Term.swift */,
 				1330EAD821E2E0D300017BF8 /* RealmTerm.swift */,
+				135C427721FD47D900BC669A /* RealmTermList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				1344D50221E5B866009E1C29 /* UpdateSelectedListDelegate.swift in Sources */,
 				13644F1E214ED7B700F20718 /* TermsController.swift in Sources */,
 				13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */,
+				135C427821FD47D900BC669A /* RealmTermList.swift in Sources */,
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
 				13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */,
 				13C594A821CC64FD0035E430 /* NewTermModelView.swift in Sources */,

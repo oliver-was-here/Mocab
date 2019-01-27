@@ -7,6 +7,10 @@ class RealmTermService: TermService {
         .sorted(byKeyPath: "lastStatusUpdate")
     
     // MARK: TermService
+    static func getDefaultListID() -> String? {
+        return realm?.objects(RealmTermListFoo.self).first?.id
+    }
+    
     static var inProgressTerm: Term? {
         guard let realmTerm = termsQuery?
             .filter("status = \(Term.Status.inProgress.rawValue)")
@@ -16,19 +20,28 @@ class RealmTermService: TermService {
         return realmTermToDTO(realmTerm)
     }
     
-    static func getAll(_ status: Term.Status) -> [Term] {
-        return termsQuery?
+    static func getAll(_ status: Term.Status, for listId: String?) -> [Term] {
+        return realm?.object(ofType: RealmTermListFoo.self, forPrimaryKey: listId ?? "")?
+            .terms
             .filter("status = \(status.rawValue)")
             .map { realmTermToDTO($0) } ?? []
     }
     
-    static func save(_ newTerm: Term) {
+    static func save(_ newTerm: Term, for listId: String?) {
+        let list = realm?.object(ofType: RealmTermListFoo.self, forPrimaryKey: listId ?? "")
+        let newRealmTerm: RealmTerm = dtoToRealmTerm(newTerm)
+        let existingTerm = realm?.object(ofType: RealmTerm.self, forPrimaryKey: newRealmTerm.term)
+        
         do {
             try realm?.write {
-                realm?.add(dtoToRealmTerm(newTerm), update: true)
+                if existingTerm == nil {
+                    list!.terms.append(newRealmTerm)
+                } else {
+                    realm?.add(newRealmTerm, update: true)
+                }
             }
         } catch {
-            log(.error, "failed to add term \(newTerm)")
+            log(.error, "failed to add term \(newTerm) -- \(error)")
         }
     }
     

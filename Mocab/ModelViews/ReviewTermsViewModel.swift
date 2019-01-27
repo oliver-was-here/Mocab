@@ -3,6 +3,7 @@ import PromiseKit
 
 protocol ReviewTermsViewModel {
     var displayedTerms: [TermModelView] { get }
+    var listID: String? { get }
     
     init(
         updatedStatusDisplayed: @escaping (Term.Status) -> (),
@@ -13,7 +14,7 @@ protocol ReviewTermsViewModel {
         forStatus status: Term.Status
     )
     
-    func updateDisplayedTerms(to status: Term.Status)
-    
+    func updateDisplayedTerms(to status: Term.Status, forList listID: String)
+
     func removeTerm(term: TermModelView)
 }

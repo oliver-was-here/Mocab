@@ -16,7 +16,8 @@ class ListsViewController: UIViewController {
     }
     
     private func selectStatus(_ status: Term.Status) {
-        delegate?.display(status: status)
+        let listID = ServiceInjector.termsService.getDefaultListID() ?? ""
+        delegate?.display(status: status, forList: listID)
         self.dismiss(animated: true)
     }
     

@@ -12,6 +12,7 @@ class TermsController: UIViewController, UpdateSelectedListDelegate {
     private let tableDelegate = TermTableViewDelegate()
     
     private var reviewTermsViewModel: ReviewTermsViewModel?
+    var listID: String? { return reviewTermsViewModel?.listID }
     
     override func viewDidAppear(_ animated: Bool) {
         termsTable.reloadData()
@@ -44,8 +45,8 @@ class TermsController: UIViewController, UpdateSelectedListDelegate {
     }
     
     // MARK: UpdateSelectedListDelegate
-    func display(status: Term.Status) {
-        reviewTermsViewModel?.updateDisplayedTerms(to: status)
+    func display(status: Term.Status, forList listID: String) {
+        reviewTermsViewModel?.updateDisplayedTerms(to: status, forList: listID)
     }
     
     // MARK: Private

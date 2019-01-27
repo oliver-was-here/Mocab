@@ -5,8 +5,10 @@ class NewTermModelViewImpl: NewTermModelView {
     private let definitionsAdded: (inout [DefinitionModelView]) -> ()
     private var definitions: [DefinitionModelView] = []
     private var definitionViewModels: [DefinitionModelView] = []
+    private let listID: String?
     
-    required init(definitionsAdded: @escaping (inout [DefinitionModelView]) -> ()) {
+    required init(listID: String?, definitionsAdded: @escaping (inout [DefinitionModelView]) -> ()) {
+        self.listID = listID
         self.definitionsAdded = definitionsAdded
     }
     
@@ -38,7 +40,7 @@ class NewTermModelViewImpl: NewTermModelView {
             lastStatusUpdate: Date()
         )
         
-        ServiceInjector.termsService.save(term)
+        ServiceInjector.termsService.save(term, for: listID)
     }
     
     func selectedDefinitions() -> [String] {

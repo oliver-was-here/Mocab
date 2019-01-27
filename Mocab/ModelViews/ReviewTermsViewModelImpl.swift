@@ -2,6 +2,8 @@ import Foundation
 import PromiseKit
 
 class ReviewTermsViewModelImpl: ReviewTermsViewModel {
+    var listID: String?
+    
     // cell callbacks piped to child MVs on creation
     private let statusUpdated: (TermModelView) -> () // single term
     private let numLinesUpdated: (TermModelView, IndexPath) -> ()
@@ -31,9 +33,9 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         displayedTerms = displayedTerms.filter { $0 !== term }
     }
 
-    func updateDisplayedTerms(to status: Term.Status) {
+    func updateDisplayedTerms(to status: Term.Status, forList listID: String) {
         termsStatus = status
-        displayedTerms = initModelViews(for: status)
+        displayedTerms = initModelViews(for: status, forList: listID)
         
         screenTitle = ReviewTermsViewModelImpl.getTitle(forStatus: status)
     }
@@ -46,6 +48,7 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         numLinesUpdated: @escaping (TermModelView, IndexPath) -> (),
         forStatus status: Term.Status = .inProgress
     ) {
+        self.listID = ServiceInjector.termsService.getDefaultListID()
         self.updatedDisplayedTerms = updatedDisplayedTerms
         self.didUpdateScreenTitle = didUpdateScreenTitle
         self.statusUpdated = statusUpdated
@@ -61,7 +64,8 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         displayedTerms = ReviewTermsViewModelImpl.initModelViews(
             forStatus: status,
             statusUpdated: statusUpdated,
-            numLinesUpdated: numLinesUpdated
+            numLinesUpdated: numLinesUpdated,
+            forList: listID
         )
         updatedDisplayedTerms(displayedTerms)
     }
@@ -81,10 +85,11 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
     static private func initModelViews(
         forStatus statusType: Term.Status,
         statusUpdated: @escaping (TermModelView) -> (),
-        numLinesUpdated: @escaping (TermModelView, IndexPath) -> ()
+        numLinesUpdated: @escaping (TermModelView, IndexPath) -> (),
+        forList listID: String? = nil
     ) -> [TermModelView] {
         return ServiceInjector.termsService
-            .getAll(statusType)
+            .getAll(statusType, for: listID)
             .map { TermModelViewImpl(
                 term: $0,
                 statusUpdated: statusUpdated,
@@ -101,11 +106,12 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
         )
     }
     
-    private func initModelViews(for statusType: Term.Status) -> [TermModelView] {
+    private func initModelViews(for statusType: Term.Status, forList listID: String) -> [TermModelView] {
         return ReviewTermsViewModelImpl.initModelViews(
             forStatus: statusType,
             statusUpdated: statusUpdated,
-            numLinesUpdated: numLinesUpdated
+            numLinesUpdated: numLinesUpdated,
+            forList: listID
         )
     }
 }

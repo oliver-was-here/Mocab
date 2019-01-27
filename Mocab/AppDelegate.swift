@@ -33,10 +33,10 @@ extension AppDelegate {
     // MARK: Private
     private func awakenSnoozedTerm(ifOlderThan awakenDate: Date) {
         ServiceInjector.termsService
-            .getAll(.snoozed)
+            .getAll(.snoozed, for: nil)
             .filter { $0.lastStatusUpdate.compare(awakenDate) == .orderedAscending }
             .map { $0.changeValues(status: .inProgress) }
-            .forEach { ServiceInjector.termsService.save($0) }
+            .forEach { ServiceInjector.termsService.save($0, for: nil) }
     }
     
     private func configureTermNotifications() {

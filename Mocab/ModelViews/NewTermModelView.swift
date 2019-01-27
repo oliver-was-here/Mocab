@@ -2,7 +2,7 @@ import Foundation
 import PromiseKit
 
 protocol NewTermModelView {
-    init(definitionsAdded: @escaping (inout [DefinitionModelView]) -> ())
+    init(listID: String?, definitionsAdded: @escaping (inout [DefinitionModelView]) -> ())
     
     func newTermReceived(_ term: String) -> Promise<Void>
     func saveEntry(term: String, chosenDefinition: String)
