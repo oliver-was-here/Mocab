@@ -34,7 +34,10 @@ class ReviewTermsViewModelImpl: ReviewTermsViewModel {
     }
 
     func updateDisplayedTerms(to status: Term.Status, forList listID: String) {
+        self.listID = listID
+        
         termsStatus = status
+        
         displayedTerms = initModelViews(for: status, forList: listID)
         
         screenTitle = ReviewTermsViewModelImpl.getTitle(forStatus: status)
