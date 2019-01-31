@@ -8,10 +8,10 @@ class SelectListSegue: UIStoryboardSegue {
             destination: destination
         )
         
-        guard let termsVC = source as? UpdateSelectedListDelegate,
+        guard let delegate = source as? UpdateSelectedListDelegate,
             let listVC = destination as? ListsViewController
             else { return }
         
-        listVC.delegate = termsVC
+        listVC.delegate = delegate
     }
 }
