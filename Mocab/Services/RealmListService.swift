@@ -10,4 +10,16 @@ class RealmListService: ListService {
         
         return Array(lists.map { (id: $0.id, name: $0.name) } )
     }
+    
+    static func create(name: String) {
+        let list = RealmTermListFoo()
+        list.name = name
+        do {
+            try realm!.write {
+                realm?.add(list)
+            }
+        } catch {
+            log(.error, "failed to save list: \(name). \(error)")
+        } 
+    }
 }

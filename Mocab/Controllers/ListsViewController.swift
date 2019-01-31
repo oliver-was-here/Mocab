@@ -24,10 +24,7 @@ class ListsViewController: UIViewController, ListSelectionDelegate {
             }
         )
     }
-    
-    @IBAction func dismissTapped(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
+    // todo fix bug of appending the same list
     
     // MARK: ListSelectionDelegate
     func snoozedTapped(_ sender: UIButton) {

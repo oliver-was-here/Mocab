@@ -38,6 +38,7 @@
 		13644F26214ED7BA00F20718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13644F24214ED7BA00F20718 /* LaunchScreen.storyboard */; };
 		13644F31214ED7BA00F20718 /* MocabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F30214ED7BA00F20718 /* MocabTests.swift */; };
 		13644F3C214ED7BA00F20718 /* MocabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F3B214ED7BA00F20718 /* MocabUITests.swift */; };
+		136FEB4C22038367003B8BED /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136FEB4B22038367003B8BED /* NewListViewController.swift */; };
 		1385266821531D2F0024F099 /* TermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266721531D2F0024F099 /* TermService.swift */; };
 		1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266B2153224E0024F099 /* ServiceInjector.swift */; };
 		1385266F215341660024F099 /* NewTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewTermCell.swift */; };
@@ -145,6 +146,7 @@
 		13644F37214ED7BA00F20718 /* MocabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MocabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13644F3B214ED7BA00F20718 /* MocabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocabUITests.swift; sourceTree = "<group>"; };
 		13644F3D214ED7BA00F20718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		136FEB4B22038367003B8BED /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		1385266721531D2F0024F099 /* TermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermService.swift; sourceTree = "<group>"; };
 		1385266B2153224E0024F099 /* ServiceInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjector.swift; sourceTree = "<group>"; };
 		1385266E215341660024F099 /* NewTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermCell.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				13644F1D214ED7B700F20718 /* TermsController.swift */,
 				13F1D91E219FD24600E145CC /* NewTermViewController.swift */,
 				1344D4FC21E5B820009E1C29 /* ListsViewController.swift */,
+				136FEB4B22038367003B8BED /* NewListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				1388BD0F2202986E007EE8B8 /* ListService.swift in Sources */,
 				13F1D91B219FBC8C00E145CC /* ReviewTermsViewModel.swift in Sources */,
 				13198AA221E570620095A052 /* Logger.swift in Sources */,
+				136FEB4C22038367003B8BED /* NewListViewController.swift in Sources */,
 				1344D4FD21E5B820009E1C29 /* ListsViewController.swift in Sources */,
 				13CCAD892153580D004534F5 /* UnexpectedPayloadError.swift in Sources */,
 				13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */,
