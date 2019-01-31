@@ -1,50 +1,58 @@
 import UIKit
 
-class ListsViewController: UIViewController, ListSelectionDelegate {
-    @IBOutlet weak var lists: UIStackView!
+class ListsViewController: UIViewController, ListSelectionDelegate, UITableViewDataSource {
     
     var delegate: UpdateSelectedListDelegate?
-    private var viewModel: ListsViewModel?
-    private var tagToListID: [Int: String] = [:]
+    private let listsService = ServiceInjector.listsService
+    private var viewModels: [ListViewModel] = []
+
+    @IBOutlet weak var listsTable: UITableView!
+    
+    override func viewDidLoad() {
+        listsTable.dataSource = self
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-        viewModel = ListsViewModel(
-            receivedNewLists: { listViewModel in
-                listViewModel.forEach {
-                    let tag = self.tagToListID.count
-                    self.tagToListID[tag] = $0.id
-                    self.lists.addArrangedSubview(
-                        ListView.instantiate(
-                            tag: tag,
-                            listName: $0.name,
-                            delegate: self
-                        )
-                    )
-                }
-            }
-        )
+        viewModels = listsService.getAll().map { ListViewModel(id: $0.id, name: $0.name) }
+        listsTable.reloadData()
     }
-    // todo fix bug of appending the same list
     
     // MARK: ListSelectionDelegate
     func snoozedTapped(_ sender: UIButton) {
-        selectStatus(.snoozed, tag: sender.tag)
+        selectStatus(.snoozed, index: sender.tag)
     }
     
     func masteredTapped(_ sender: UIButton) {
-        selectStatus(.mastered, tag: sender.tag)
+        selectStatus(.mastered, index: sender.tag)
     }
     
     func inProgressTapped(_ sender: UIButton) {
-        selectStatus(.inProgress, tag: sender.tag)
+        selectStatus(.inProgress, index: sender.tag)
     }
     
-    // MARK: private
+    //MARK: UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModels.count
+    }
     
-    private func selectStatus(_ status: Term.Status, tag: Int) {
-        let listID: String = tagToListID[tag]
-            ?? ServiceInjector.termsService.getDefaultListID()
-            ?? ""
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectListCell.ID) as? SelectListCell
+            else {
+                return UITableViewCell()
+            }
+        
+        cell.configure(
+            viewModel: viewModels[indexPath.row],
+            tag: indexPath.row,
+            delegate: self
+        )
+        
+        return cell
+    }
+
+    // MARK: private
+    private func selectStatus(_ status: Term.Status, index: Int) {
+        let listID: String = viewModels[index].id
         
         delegate?.display(status: status, forList: listID)
         self.dismiss(animated: true)

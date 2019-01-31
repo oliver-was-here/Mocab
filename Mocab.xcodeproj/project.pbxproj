@@ -25,7 +25,6 @@
 		134D4B6B21D8643500985B8E /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 134D4B6621D8641F00985B8E /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		134D4B6C21D8643600985B8E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134D4B6721D8642200985B8E /* RealmSwift.framework */; };
 		134D4B6D21D8643600985B8E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 134D4B6721D8642200985B8E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		135C427621FD428700BC669A /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 135C427521FD428700BC669A /* ListView.xib */; };
 		135C427821FD47D900BC669A /* RealmTermList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C427721FD47D900BC669A /* RealmTermList.swift */; };
 		135FCC7D216FFB3900C3A633 /* ExistingTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */; };
 		135FCC872170599E00C3A633 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135FCC862170599E00C3A633 /* SwipeCellKit.framework */; };
@@ -39,11 +38,11 @@
 		13644F31214ED7BA00F20718 /* MocabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F30214ED7BA00F20718 /* MocabTests.swift */; };
 		13644F3C214ED7BA00F20718 /* MocabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13644F3B214ED7BA00F20718 /* MocabUITests.swift */; };
 		136FEB4C22038367003B8BED /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136FEB4B22038367003B8BED /* NewListViewController.swift */; };
+		136FEB4E22038B97003B8BED /* DefinitionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 136FEB4D22038B97003B8BED /* DefinitionView.xib */; };
 		1385266821531D2F0024F099 /* TermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266721531D2F0024F099 /* TermService.swift */; };
 		1385266C2153224E0024F099 /* ServiceInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266B2153224E0024F099 /* ServiceInjector.swift */; };
 		1385266F215341660024F099 /* NewTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385266E215341660024F099 /* NewTermCell.swift */; };
-		1388BD0522029647007EE8B8 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD0422029647007EE8B8 /* ListView.swift */; };
-		1388BD072202966F007EE8B8 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD062202966F007EE8B8 /* ListsViewModel.swift */; };
+		1388BD0522029647007EE8B8 /* SelectListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD0422029647007EE8B8 /* SelectListCell.swift */; };
 		1388BD09220296AD007EE8B8 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD08220296AD007EE8B8 /* ListViewModel.swift */; };
 		1388BD0B220296CD007EE8B8 /* ListSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD0A220296CD007EE8B8 /* ListSelectionDelegate.swift */; };
 		1388BD0D22029811007EE8B8 /* NewTermSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD0C22029811007EE8B8 /* NewTermSegue.swift */; };
@@ -51,7 +50,6 @@
 		1388BD112202988F007EE8B8 /* RealmListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388BD102202988F007EE8B8 /* RealmListService.swift */; };
 		13AE78BA217D26E5002B440C /* SwipeTermStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */; };
 		13AE78C0217D33CC002B440C /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE78BF217D33CC002B440C /* AlertProvider.swift */; };
-		13BA1AC321A8A4A800F52BE9 /* DefinitionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13BA1AC221A8A4A800F52BE9 /* DefinitionView.xib */; };
 		13C594A421CC64830035E430 /* DefinitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A321CC64830035E430 /* DefinitionView.swift */; };
 		13C594A621CC64BE0035E430 /* DefinitionModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A521CC64BE0035E430 /* DefinitionModelView.swift */; };
 		13C594A821CC64FD0035E430 /* NewTermModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C594A721CC64FD0035E430 /* NewTermModelView.swift */; };
@@ -129,7 +127,6 @@
 		134D4B5E21D2DC1100985B8E /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		134D4B6621D8641F00985B8E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		134D4B6721D8642200985B8E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		135C427521FD428700BC669A /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		135C427721FD47D900BC669A /* RealmTermList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTermList.swift; sourceTree = "<group>"; };
 		135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingTermCell.swift; sourceTree = "<group>"; };
 		135FCC862170599E00C3A633 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
@@ -147,11 +144,11 @@
 		13644F3B214ED7BA00F20718 /* MocabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocabUITests.swift; sourceTree = "<group>"; };
 		13644F3D214ED7BA00F20718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		136FEB4B22038367003B8BED /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
+		136FEB4D22038B97003B8BED /* DefinitionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefinitionView.xib; sourceTree = "<group>"; };
 		1385266721531D2F0024F099 /* TermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermService.swift; sourceTree = "<group>"; };
 		1385266B2153224E0024F099 /* ServiceInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInjector.swift; sourceTree = "<group>"; };
 		1385266E215341660024F099 /* NewTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermCell.swift; sourceTree = "<group>"; };
-		1388BD0422029647007EE8B8 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		1388BD062202966F007EE8B8 /* ListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewModel.swift; sourceTree = "<group>"; };
+		1388BD0422029647007EE8B8 /* SelectListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectListCell.swift; sourceTree = "<group>"; };
 		1388BD08220296AD007EE8B8 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		1388BD0A220296CD007EE8B8 /* ListSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionDelegate.swift; sourceTree = "<group>"; };
 		1388BD0C22029811007EE8B8 /* NewTermSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermSegue.swift; sourceTree = "<group>"; };
@@ -159,7 +156,6 @@
 		1388BD102202988F007EE8B8 /* RealmListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmListService.swift; sourceTree = "<group>"; };
 		13AE78B9217D26E5002B440C /* SwipeTermStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTermStatusDelegate.swift; sourceTree = "<group>"; };
 		13AE78BF217D33CC002B440C /* AlertProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProvider.swift; sourceTree = "<group>"; };
-		13BA1AC221A8A4A800F52BE9 /* DefinitionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefinitionView.xib; sourceTree = "<group>"; };
 		13C594A321CC64830035E430 /* DefinitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionView.swift; sourceTree = "<group>"; };
 		13C594A521CC64BE0035E430 /* DefinitionModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionModelView.swift; sourceTree = "<group>"; };
 		13C594A721CC64FD0035E430 /* NewTermModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTermModelView.swift; sourceTree = "<group>"; };
@@ -352,10 +348,9 @@
 			children = (
 				1385266E215341660024F099 /* NewTermCell.swift */,
 				135FCC7C216FFB3900C3A633 /* ExistingTermCell.swift */,
-				13BA1AC221A8A4A800F52BE9 /* DefinitionView.xib */,
 				13C594A321CC64830035E430 /* DefinitionView.swift */,
-				135C427521FD428700BC669A /* ListView.xib */,
-				1388BD0422029647007EE8B8 /* ListView.swift */,
+				136FEB4D22038B97003B8BED /* DefinitionView.xib */,
+				1388BD0422029647007EE8B8 /* SelectListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -411,7 +406,6 @@
 				13C594A521CC64BE0035E430 /* DefinitionModelView.swift */,
 				13C594A721CC64FD0035E430 /* NewTermModelView.swift */,
 				13C594A921CC65250035E430 /* NewTermModelViewImpl.swift */,
-				1388BD062202966F007EE8B8 /* ListsViewModel.swift */,
 				1388BD08220296AD007EE8B8 /* ListViewModel.swift */,
 			);
 			path = ModelViews;
@@ -527,11 +521,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13BA1AC321A8A4A800F52BE9 /* DefinitionView.xib in Resources */,
+				136FEB4E22038B97003B8BED /* DefinitionView.xib in Resources */,
 				13644F26214ED7BA00F20718 /* LaunchScreen.storyboard in Resources */,
 				13644F23214ED7BA00F20718 /* Assets.xcassets in Resources */,
 				13644F21214ED7B700F20718 /* Main.storyboard in Resources */,
-				135C427621FD428700BC669A /* ListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +586,7 @@
 				13FEB5732188076200F0E3A9 /* TermModelViewImpl.swift in Sources */,
 				1344D50221E5B866009E1C29 /* UpdateSelectedListDelegate.swift in Sources */,
 				13644F1E214ED7B700F20718 /* TermsController.swift in Sources */,
-				1388BD0522029647007EE8B8 /* ListView.swift in Sources */,
+				1388BD0522029647007EE8B8 /* SelectListCell.swift in Sources */,
 				13644F1C214ED7B700F20718 /* AppDelegate.swift in Sources */,
 				135C427821FD47D900BC669A /* RealmTermList.swift in Sources */,
 				1334C6F92150BC38002B17E6 /* Term.swift in Sources */,
@@ -601,7 +594,6 @@
 				13C594A821CC64FD0035E430 /* NewTermModelView.swift in Sources */,
 				1388BD0D22029811007EE8B8 /* NewTermSegue.swift in Sources */,
 				1330EAD721E2DFD000017BF8 /* RealmTermService.swift in Sources */,
-				1388BD072202966F007EE8B8 /* ListsViewModel.swift in Sources */,
 				13F1D917219BCE9500E145CC /* UITextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
